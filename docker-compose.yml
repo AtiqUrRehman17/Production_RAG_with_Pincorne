@@ -1,0 +1,16 @@
+# Redis for the background job queue.  Start: docker compose up -d redis   Stop: docker compose stop redis
+# The API and the worker run from the virtual environment (python -m api / python -m workers).
+services:
+  redis:
+    image: redis:7.4-alpine
+    container_name: rag-redis
+    # appendonly: queued jobs survive a Redis restart
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+volumes:
+  redis-data:

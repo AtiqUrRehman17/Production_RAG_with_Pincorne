@@ -1,0 +1,442 @@
+{
+  "name": "golden",
+  "version": 1,
+  "description": "First golden dataset: 42 questions about the Quiz Generation documentation and the AI Guide Gemini upgrade proposal. Key facts are short, exact texts that a correct answer must contain; expected_sources are needed for a complete answer, also_acceptable sources also contain the answer.",
+  "documents": [
+    "Quiz_Generation_Project_Documentation.pdf",
+    "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf"
+  ],
+  "items": [
+    {
+      "id": "q001",
+      "question": "What temperature is the model called with?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "A low temperature of 0.3, to favor consistent, factual output.",
+      "key_facts": ["0.3"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Temperature Control"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Calling Ollama"}]
+    },
+    {
+      "id": "q002",
+      "question": "What happens if the model returns malformed JSON?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "The system automatically retries the generation, up to 3 times, before failing.",
+      "key_facts": [["3 times", "three times", "up to 3"]],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Automatic Retries"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Parsing and validating"}]
+    },
+    {
+      "id": "q003",
+      "question": "Which endpoint reports whether Ollama is reachable?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "GET /health reports whether Ollama is reachable and which model is active.",
+      "key_facts": ["/health"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Health & Model Discovery"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "API Endpoints Reference"}]
+    },
+    {
+      "id": "q004",
+      "question": "Which local model does the quiz project use?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "qwen2.5:1.5b, run locally through Ollama.",
+      "key_facts": ["qwen2.5:1.5b"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Quiz Generation Project"}],
+      "also_acceptable": [
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Technology Stack"},
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "High-Level Architecture"},
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "How to Run the Project"},
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Why Ollama"}
+      ]
+    },
+    {
+      "id": "q005",
+      "question": "On which port does the Ollama server run?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "Port 11434 (http://localhost:11434).",
+      "key_facts": ["11434"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Calling Ollama"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "High-Level Architecture"}]
+    },
+    {
+      "id": "q006",
+      "question": "What difficulty levels can a quiz have?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "easy, medium or hard.",
+      "key_facts": ["easy", "medium", "hard"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Input validation"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Prompt construction"}]
+    },
+    {
+      "id": "q007",
+      "question": "How many options does each multiple choice question have?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "Exactly 4 options, with exactly one correct answer.",
+      "key_facts": [["4", "four"]],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Multiple Choice Questions"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Parsing and validating"}]
+    },
+    {
+      "id": "q008",
+      "question": "What HTTP status code is returned when Ollama is down?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "503 (OllamaUnavailableError).",
+      "key_facts": ["503"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Robust Error Handling"}]
+    },
+    {
+      "id": "q009",
+      "question": "Which command starts the API server?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "uvicorn app.main:app --reload",
+      "key_facts": ["uvicorn app.main:app"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "How to Run the Project"}]
+    },
+    {
+      "id": "q010",
+      "question": "Which module does the current AI Guide chat always recommend?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "Always \"breathwork\", regardless of context.",
+      "key_facts": ["breathwork"],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "1 Current Behavior"}],
+      "also_acceptable": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "Current vs. Proposed"}]
+    },
+    {
+      "id": "q011",
+      "question": "In the proposed design, what happens if the Gemini call fails?",
+      "type": "clear",
+      "answerable": true,
+      "expected_answer": "The chat silently falls back to the existing random generic (canned) reply; no error is shown to the user.",
+      "key_facts": [["fall back", "falls back", "fallback", "fall-back"]],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "2 Proposed Behavior With Gemini"}],
+      "also_acceptable": [
+        {"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "Current vs. Proposed"},
+        {"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "What Changes In The Code"}
+      ]
+    },
+    {
+      "id": "q012",
+      "question": "Why not use a cloud AI provider like OpenAI for the quiz project?",
+      "type": "reworded",
+      "answerable": true,
+      "expected_answer": "Running Ollama locally needs no API keys or billing, keeps quiz data private, works offline and small models run on modest hardware.",
+      "key_facts": [["privacy", "private"]],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Why Ollama"}],
+      "also_acceptable": [
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Privacy-Friendly Design"},
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "1. Project Overview"}
+      ]
+    },
+    {
+      "id": "q013",
+      "question": "Will the endpoints change when Gemini is added to the AI Guide chat?",
+      "type": "reworded",
+      "answerable": true,
+      "expected_answer": "No. The API surface does not change: same endpoints and the same request/response shape.",
+      "key_facts": [["not change", "unchanged", "same endpoints", "no new"]],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "2 Proposed Behavior With Gemini"}],
+      "also_acceptable": [
+        {"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "What Changes In The Code"},
+        {"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "Current vs. Proposed"}
+      ]
+    },
+    {
+      "id": "q014",
+      "question": "What is wrong with the replies the AI Guide chat gives today?",
+      "type": "reworded",
+      "answerable": true,
+      "expected_answer": "They are not AI-generated: one of three hardcoded sentences is picked at random, with no memory of the conversation and no relationship to what the user wrote.",
+      "key_facts": [["hardcoded", "canned", "fixed"]],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "1 Current Behavior"}],
+      "also_acceptable": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "Current vs. Proposed"}]
+    },
+    {
+      "id": "q015",
+      "question": "How does the system stop the model from making up facts in quiz questions?",
+      "type": "reworded",
+      "answerable": true,
+      "expected_answer": "Prompts explicitly tell the model to avoid inventing facts and stay on topic; a low temperature (0.3) also favors factual output.",
+      "key_facts": [["invent", "making up", "made up", "fabricat"]],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Prompt Engineering for Accuracy"}],
+      "also_acceptable": [
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Prompt construction"},
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Temperature Control"}
+      ]
+    },
+    {
+      "id": "q016",
+      "question": "What does the API do if I ask for 25 questions?",
+      "type": "reworded",
+      "answerable": true,
+      "expected_answer": "It rejects the request with HTTP 400, because num_questions must be between 1 and 20.",
+      "key_facts": ["400", "20"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Input validation"}]
+    },
+    {
+      "id": "q017",
+      "question": "If I ask for 10 questions across three quiz types, how are they divided?",
+      "type": "reworded",
+      "answerable": true,
+      "expected_answer": "As evenly as possible: 4, 3 and 3.",
+      "key_facts": [["4, 3, 3", "4, 3, and 3", "4, 3 and 3", "4 3 3", "4 questions and the other two", "other two types receive 3", "other two get 3"]],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Splitting work across quiz types"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Mixed Quizzes"}]
+    },
+    {
+      "id": "q018",
+      "question": "Why could sending a chat message take longer once Gemini is added?",
+      "type": "reworded",
+      "answerable": true,
+      "expected_answer": "Each message now waits for a real Gemini-backed reply, so latency per message is slightly higher.",
+      "key_facts": [["latency", "slower", "longer"]],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "What Changes In The Code"}],
+      "also_acceptable": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "One thing to keep in mind"}]
+    },
+    {
+      "id": "q019",
+      "question": "Can I switch the quiz project to another model without changing the code?",
+      "type": "reworded",
+      "answerable": true,
+      "expected_answer": "Yes. The model name lives in the .env file, so switching (e.g. to gemma2:2b) only needs a config change.",
+      "key_facts": [[".env", "config"]],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Environment-Based Configuration"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Health & Model Discovery"}]
+    },
+    {
+      "id": "q020",
+      "question": "for whom the file is prepared?",
+      "type": "unusual-wording",
+      "answerable": true,
+      "expected_answer": "The AI Guide proposal is prepared for the Engineering Lead Review.",
+      "key_facts": ["Engineering Lead Review"],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "page": 1}],
+      "notes": "Real user question that was wrongly answered 'not found' before RERANK_MIN_BEST_SCORE was added."
+    },
+    {
+      "id": "q021",
+      "question": "how i run the projct",
+      "type": "unusual-wording",
+      "answerable": true,
+      "expected_answer": "Install Ollama and pull qwen2.5:1.5b, create a venv, pip install -r requirements.txt, then run uvicorn app.main:app --reload.",
+      "key_facts": ["uvicorn"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "How to Run the Project"}]
+    },
+    {
+      "id": "q022",
+      "question": "wat happens when ollama is not reachable",
+      "type": "unusual-wording",
+      "answerable": true,
+      "expected_answer": "An OllamaUnavailableError is raised and mapped to HTTP 503.",
+      "key_facts": ["503"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Robust Error Handling"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Health & Model Discovery"}]
+    },
+    {
+      "id": "q023",
+      "question": "max how much questions i can generate",
+      "type": "unusual-wording",
+      "answerable": true,
+      "expected_answer": "Up to 20 questions per request (num_questions must be between 1 and 20).",
+      "key_facts": ["20"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Input validation"}]
+    },
+    {
+      "id": "q024",
+      "question": "Which quiz types are supported and how do I run the project?",
+      "type": "two-part",
+      "answerable": true,
+      "expected_answer": "MCQ, Short Answer and Fill in the Blank (also mixed). To run: install Ollama, pull the model, install requirements, start uvicorn.",
+      "key_facts": ["Short Answer", "Fill in the Blank", "uvicorn"],
+      "expected_sources": [
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Quiz Types Supported"},
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "How to Run the Project"}
+      ],
+      "also_acceptable": [
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "1. Project Overview"},
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Multiple Quiz Formats"}
+      ]
+    },
+    {
+      "id": "q025",
+      "question": "What does GET /health do, and what does GET /models do?",
+      "type": "two-part",
+      "answerable": true,
+      "expected_answer": "/health reports whether Ollama is reachable and which model is active; /models lists all models available in the local Ollama installation.",
+      "key_facts": [["reachable", "can be reached", "is reached", "is running"], ["lists all models", "list all models", "available"]],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Health & Model Discovery"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "API Endpoints Reference"}]
+    },
+    {
+      "id": "q026",
+      "question": "In the AI Guide proposal, what happens to the escalation check and to recommended_module_slug?",
+      "type": "two-part",
+      "answerable": true,
+      "expected_answer": "The escalation check stays unchanged, deterministic and runs first; recommended_module_slug is dropped (left empty) for Gemini replies.",
+      "key_facts": [["unchanged", "untouched", "stays", "deterministic"], ["empty", "dropped"]],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "Design decisions already confirmed"}],
+      "also_acceptable": [
+        {"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "2 Proposed Behavior With Gemini"},
+        {"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "Current vs. Proposed"}
+      ]
+    },
+    {
+      "id": "q027",
+      "question": "What temperature does the quiz model use, and how many times does it retry on failure?",
+      "type": "two-part",
+      "answerable": true,
+      "expected_answer": "Temperature 0.3; it retries up to 3 times.",
+      "key_facts": ["0.3", ["3 times", "three times", "up to 3"]],
+      "expected_sources": [
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Temperature Control"},
+        {"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Automatic Retries"}
+      ],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Calling Ollama"}]
+    },
+    {
+      "id": "q028",
+      "question": "What is the requests library used for in the quiz project?",
+      "type": "table",
+      "answerable": true,
+      "expected_answer": "It is the HTTP client that communicates with the local Ollama server.",
+      "key_facts": ["Ollama"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Technology Stack"}]
+    },
+    {
+      "id": "q029",
+      "question": "Which server runs the FastAPI application?",
+      "type": "table",
+      "answerable": true,
+      "expected_answer": "Uvicorn, an ASGI server.",
+      "key_facts": ["Uvicorn"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Technology Stack"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "How to Run the Project"}]
+    },
+    {
+      "id": "q030",
+      "question": "In the AI Guide proposal, how does conversation memory differ between the current and the proposed version?",
+      "type": "table",
+      "answerable": true,
+      "expected_answer": "Current: none, each message is treated in isolation. Proposed: recent message history is passed to Gemini.",
+      "key_facts": [["isolation", "no memory", "none"], "history"],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "Current vs. Proposed"}],
+      "also_acceptable": [
+        {"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "1 Current Behavior"},
+        {"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "2 Proposed Behavior With Gemini"}
+      ]
+    },
+    {
+      "id": "q031",
+      "question": "In the AI Guide proposal, which files change in the code?",
+      "type": "specific-doc",
+      "answerable": true,
+      "expected_answer": "integrations/ai/gemini_client.py, services/ai_guide_service.py and routes/ai_guide.py.",
+      "key_facts": ["gemini_client.py", "ai_guide_service.py", "routes/ai_guide.py"],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "What Changes In The Code"}]
+    },
+    {
+      "id": "q032",
+      "question": "According to the quiz project documentation, what improvements are planned for the future?",
+      "type": "specific-doc",
+      "answerable": true,
+      "expected_answer": "A web frontend, saving quizzes to a database, automated tests, Docker, and per-type question counts for mixed quizzes.",
+      "key_facts": ["frontend", "database", "Docker"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Possible Future Improvements"}]
+    },
+    {
+      "id": "q033",
+      "question": "In the AI Guide proposal, why should usage be monitored once the chat is live?",
+      "type": "specific-doc",
+      "answerable": true,
+      "expected_answer": "Chat can be called many times per conversation, so cost and latency scale with message volume.",
+      "key_facts": [["message volume", "many times", "cost"]],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "One thing to keep in mind"}]
+    },
+    {
+      "id": "q034",
+      "question": "Who is the project manager of the quiz generation project?",
+      "type": "unanswerable",
+      "answerable": false
+    },
+    {
+      "id": "q035",
+      "question": "How much does the Gemini API cost per month for the AI Guide chat?",
+      "type": "unanswerable",
+      "answerable": false,
+      "notes": "The proposal says cost should be monitored, but gives no price."
+    },
+    {
+      "id": "q036",
+      "question": "When was the quiz generation project first released?",
+      "type": "unanswerable",
+      "answerable": false
+    },
+    {
+      "id": "q037",
+      "question": "How many users does the Mental Wellness App have?",
+      "type": "unanswerable",
+      "answerable": false
+    },
+    {
+      "id": "q038",
+      "question": "What is the capital of France?",
+      "type": "off-topic",
+      "answerable": false
+    },
+    {
+      "id": "q039",
+      "question": "How do I bake sourdough bread?",
+      "type": "off-topic",
+      "answerable": false
+    },
+    {
+      "id": "q040",
+      "question": "How do I download it?",
+      "type": "follow-up",
+      "answerable": true,
+      "history": [
+        {"question": "Which local model does the quiz project use?",
+         "answer": "It uses the qwen2.5:1.5b model, run locally through Ollama."}
+      ],
+      "expected_answer": "Run: ollama pull qwen2.5:1.5b",
+      "key_facts": ["ollama pull"],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "How to Run the Project"}]
+    },
+    {
+      "id": "q041",
+      "question": "After the upgrade, is Gemini called in that case?",
+      "type": "follow-up",
+      "answerable": true,
+      "history": [
+        {"question": "What happens in the AI Guide chat when a crisis message is detected?",
+         "answer": "A fixed safe/support message is returned and is_escalation is set to true."}
+      ],
+      "expected_answer": "No. If escalation is triggered, Gemini is never called and the same fixed safe/support message is returned.",
+      "key_facts": [["never", "not called", "is not", "not call", "doesn't call", "won't call", "no gemini call"]],
+      "expected_sources": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "2 Proposed Behavior With Gemini"}],
+      "also_acceptable": [{"file": "AI-Guide-Chat-Gemini-Upgrade-Proposal.pdf", "section": "Current vs. Proposed"}]
+    },
+    {
+      "id": "q042",
+      "question": "And what about /models?",
+      "type": "follow-up",
+      "answerable": true,
+      "history": [
+        {"question": "What does GET /health do in the quiz project?",
+         "answer": "It reports whether Ollama is reachable and which model is currently active."}
+      ],
+      "expected_answer": "GET /models lists all models currently available in the local Ollama installation.",
+      "key_facts": [["lists all models", "list all models", "all models", "available"]],
+      "expected_sources": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "Health & Model Discovery"}],
+      "also_acceptable": [{"file": "Quiz_Generation_Project_Documentation.pdf", "section": "API Endpoints Reference"}]
+    }
+  ]
+}

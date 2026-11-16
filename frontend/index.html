@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Upload documents and chat with them, with cited answers." />
+    <title>RAG Documents</title>
+    <script>
+      // Set the theme before the first paint, so a dark-mode page doesn't flash white (see src/lib/theme.ts)
+      try {
+        const theme = localStorage.getItem("rag-theme");
+        if (theme === "dark" || (theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch {
+        // storage blocked: the app sets the theme once it starts
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

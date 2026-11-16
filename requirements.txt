@@ -1,0 +1,56 @@
+# LangChain
+langchain==1.4.3
+langchain-core==1.6.6
+langchain-community==0.4.2
+langchain-text-splitters==1.1.2
+langchain-google-genai==4.4.0
+langchain-groq==1.1.3
+langchain-pinecone==0.2.13
+langchain-pymupdf4llm==1.28.0
+
+# Vector store
+pinecone==7.3.0
+
+# File parsing and validation
+pymupdf==1.28.0
+pymupdf4llm==1.28.0
+python-docx==1.2.0
+charset-normalizer==3.5.2
+
+# Token counting (used by the chunker)
+tiktoken==0.14.0
+
+# Retries for API calls
+tenacity==9.1.4
+
+# AI judge for evaluation (python main.py evaluate --judge)
+ragas==0.4.3
+# Pinned: without it pip picks a years-old instructor that RAGAS 0.4 can't use
+instructor==1.17.0
+
+# AI judge checks with reasons (python main.py evaluate --deepeval)
+deepeval==4.3.3
+# DeepEval needs click below 8.4. pip check then reports that huggingface-hub
+# (from RAGAS) wants 8.4.2+; both only use click for command-line tools we don't run.
+click==8.3.3
+
+# Backend API (python -m api)
+fastapi==0.162.2
+uvicorn[standard]==0.54.0
+python-multipart==0.0.33
+# Database (SQLite now, PostgreSQL later)
+SQLAlchemy==2.1.6
+# Background worker and its Redis queue (python -m workers)
+arq==0.28.0
+redis==5.3.1
+# Accounts: password hashing, login tokens, email checks
+argon2-cffi==25.1.0
+PyJWT==2.15.1
+email-validator==2.3.0
+# Tracing; pinned because the trace endpoints use list_runs / read_run
+langsmith==0.14.17
+
+# Configuration
+pydantic==2.13.5
+pydantic-settings==2.15.0
+python-dotenv==1.2.3
