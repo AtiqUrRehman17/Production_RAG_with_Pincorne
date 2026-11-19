@@ -66,23 +66,23 @@ export function ScopePicker({
         className={cx(
           button("secondary", "sm"),
           "gap-1.5 shadow-2xs font-medium text-xs",
-          existing && "border-indigo-300 bg-indigo-50/50 text-indigo-700 dark:border-indigo-500/40 dark:bg-indigo-500/10 dark:text-indigo-300"
+          existing && "border-blue-300 bg-blue-50/50 text-blue-700 dark:border-blue-500/40 dark:bg-blue-500/10 dark:text-blue-300"
         )}
         disabled={!documents.length}
       >
-        <Icon name="layers" className="size-3.5 text-indigo-500" />
+        <Icon name="layers" className="size-3.5 text-blue-500" />
         <span className="hidden sm:inline">{label}</span>
         <span className="sm:hidden">{existing ? existing.length : "All"}</span>
         <Icon name="down" className={cx("size-3 transition-transform duration-200", open && "rotate-180")} />
       </button>
 
       {open && (
-        <div className="fade-in absolute right-0 top-full z-40 mt-2 w-84 max-w-[calc(100vw-1.5rem)] rounded-xl border border-zinc-200/90 bg-white p-2.5 shadow-xl backdrop-blur-md dark:border-zinc-700 dark:bg-zinc-900">
+        <div className="fade-in absolute right-0 top-full z-40 mt-2 w-84 max-w-[calc(100vw-1.5rem)] rounded-xl border border-slate-200/90 bg-white p-2.5 shadow-xl backdrop-blur-md dark:border-slate-700 dark:bg-slate-900">
           <div className="px-1 pb-2">
-            <p className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+            <p className="text-xs font-semibold text-slate-900 dark:text-slate-100">
               Retrieval Scope Filter
             </p>
-            <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">
               Restrict Pinecone vector queries to specific documents.
             </p>
           </div>
@@ -98,24 +98,24 @@ export function ScopePicker({
             </div>
           )}
 
-          <div className="flex items-center justify-between rounded-lg bg-zinc-50 px-2.5 py-1.5 dark:bg-zinc-800/60">
+          <div className="flex items-center justify-between rounded-lg bg-slate-50 px-2.5 py-1.5 dark:bg-slate-800/60">
             <label className="flex cursor-pointer items-center gap-2">
               <input
                 type="checkbox"
                 checked={!existing}
                 onChange={() => onChange(null)}
-                className="size-3.5 rounded accent-indigo-600"
+                className="size-3.5 rounded accent-blue-600"
               />
-              <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
+              <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">
                 All Documents
               </span>
             </label>
-            <span className="text-[10px] text-zinc-400 font-mono">
+            <span className="text-[10px] text-slate-400 font-mono">
               {documents.length} available
             </span>
           </div>
 
-          <div className="my-1.5 border-t border-zinc-100 dark:border-zinc-800" />
+          <div className="my-1.5 border-t border-slate-100 dark:border-slate-800" />
 
           <div className="scroll-thin max-h-60 space-y-0.5 overflow-y-auto px-0.5">
             {filteredDocs.map((d) => {
@@ -124,18 +124,18 @@ export function ScopePicker({
               return (
                 <label
                   key={d.document_id}
-                  className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2 py-1.5 transition hover:bg-zinc-100/70 dark:hover:bg-zinc-800/60"
+                  className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2 py-1.5 transition hover:bg-slate-100/70 dark:hover:bg-slate-800/60"
                 >
                   <input
                     type="checkbox"
                     checked={isChecked}
                     onChange={() => toggle(d.document_id)}
-                    className="size-3.5 rounded accent-indigo-600"
+                    className="size-3.5 rounded accent-blue-600"
                   />
-                  <span className="min-w-0 flex-1 truncate text-xs text-zinc-700 dark:text-zinc-300" title={d.file_name}>
+                  <span className="min-w-0 flex-1 truncate text-xs text-slate-700 dark:text-slate-300" title={d.file_name}>
                     {d.file_name}
                   </span>
-                  <span className="rounded-xs bg-zinc-100 px-1.5 py-0.5 text-[9px] font-bold uppercase text-zinc-400 dark:bg-zinc-800 dark:text-zinc-500">
+                  <span className="rounded-xs bg-slate-100 px-1.5 py-0.5 text-[9px] font-bold uppercase text-slate-400 dark:bg-slate-800 dark:text-slate-500">
                     {ext}
                   </span>
                 </label>

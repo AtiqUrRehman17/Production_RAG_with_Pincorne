@@ -12,34 +12,33 @@ export function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <div className="grid min-h-dvh lg:grid-cols-2">
       <div className="relative hidden overflow-hidden p-12 text-white lg:flex lg:flex-col">
-        <div className="absolute inset-0 bg-linear-to-br from-indigo-600 via-indigo-700 to-violet-800" />
-        <div className="absolute -right-24 -top-24 size-96 rounded-full bg-violet-400/20 blur-3xl" />
-        <div className="absolute -bottom-32 -left-16 size-96 rounded-full bg-sky-400/20 blur-3xl" />
+        <div className="absolute inset-0 bg-slate-900" />
+        <div className="absolute inset-y-0 right-0 w-1 bg-blue-500/70" />
         <div className="relative flex items-center gap-3"><Logo /><span className="text-lg font-semibold">{APP_NAME}</span></div>
         <div className="relative my-auto max-w-lg">
           <h2 className="text-4xl font-semibold leading-tight tracking-tight">
-            Chat with your documents.<br /><span className="text-indigo-200">Every answer cited.</span>
+            Knowledge, made<br /><span className="text-blue-300">easy to search.</span>
           </h2>
-          <p className="mt-4 text-indigo-100/90">
+          <p className="mt-4 text-slate-300">
             Upload PDFs, Word files and text. Ask questions in plain language and get answers built only from
             your files, with the exact pages to check.
           </p>
           <div className="mt-8 rounded-2xl border border-white/15 bg-white/10 p-4 shadow-2xl backdrop-blur" aria-hidden="true">
-            <div className="ml-auto w-fit max-w-[80%] rounded-2xl rounded-br-md bg-white px-3.5 py-2 text-sm text-indigo-900">
+            <div className="ml-auto w-fit max-w-[80%] rounded-2xl rounded-br-md bg-white px-3.5 py-2 text-sm text-blue-900">
               Can I carry over unused vacation days?
             </div>
             <div className="mt-3 flex gap-2.5">
               <div className="grid size-7 shrink-0 place-items-center rounded-lg bg-white/20"><Icon name="spark" className="size-4" /></div>
-              <p className="text-sm leading-relaxed text-indigo-50">
+              <p className="text-sm leading-relaxed text-blue-50">
                 Yes, up to <b>5 days</b>, used by March 31{" "}
                 <span className="inline-flex h-[1.15rem] min-w-[1.3rem] items-center justify-center rounded-md bg-white/20 px-1 text-[11px] font-semibold">2</span>
               </p>
             </div>
-            <div className="mt-3 flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs text-indigo-100">
+            <div className="mt-3 flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs text-blue-100">
               <Icon name="doc" className="size-4" /> Employee_Handbook.pdf · pages 14–15
             </div>
           </div>
-          <ul className="mt-8 space-y-2.5 text-sm text-indigo-100">
+          <ul className="mt-8 space-y-2.5 text-sm text-blue-100">
             {POINTS.map((point) => (
               <li key={point} className="flex items-center gap-2.5">
                 <span className="grid size-5 place-items-center rounded-full bg-white/15"><Icon name="check" className="size-3.5" /></span>
@@ -76,7 +75,7 @@ export function PasswordField({ id, name, labelText, autoComplete, minLength, on
                minLength={minLength} maxLength={128} className={`${fieldBase} py-2 pl-3 pr-10`}
                onChange={onValueChange ? (event) => onValueChange(event.target.value) : undefined} />
         <button type="button" onClick={() => setVisible(!visible)} aria-label={visible ? "Hide password" : "Show password"}
-                className="absolute inset-y-0 right-0 grid w-10 place-items-center text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
+                className="absolute inset-y-0 right-0 grid w-10 place-items-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
           <Icon name={visible ? "eyeoff" : "eye"} className="size-4" />
         </button>
       </div>
@@ -100,9 +99,9 @@ export function StrengthMeter({ password }: { password: string }) {
   return (
     <div aria-live="polite">
       <div className="mt-2 flex gap-1">
-        {[1, 2, 3, 4].map((i) => <span key={i} className={cx("h-1 flex-1 rounded-full", i <= level ? color : "bg-zinc-200 dark:bg-zinc-800")} />)}
+        {[1, 2, 3, 4].map((i) => <span key={i} className={cx("h-1 flex-1 rounded-full", i <= level ? color : "bg-slate-200 dark:bg-slate-800")} />)}
       </div>
-      <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+      <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
         {password ? word : "8 to 128 characters"}{password && level < 3 ? " · longer is stronger" : ""}
       </p>
     </div>

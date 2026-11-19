@@ -20,7 +20,7 @@ function inline(
       const bold = part.match(/^\*\*([^*]+)\*\*$/);
       if (bold) {
         return (
-          <strong key={`${key}-${i}`} className="font-semibold text-zinc-900 dark:text-white">
+          <strong key={`${key}-${i}`} className="font-semibold text-slate-900 dark:text-white">
             {bold[1]}
           </strong>
         );
@@ -30,7 +30,7 @@ function inline(
         return (
           <code
             key={`${key}-${i}`}
-            className="rounded-md border border-zinc-200/80 bg-zinc-100 px-1.5 py-0.5 font-mono text-[13px] text-indigo-600 dark:border-zinc-800 dark:bg-zinc-800/70 dark:text-indigo-400"
+            className="rounded-md border border-slate-200/80 bg-slate-100 px-1.5 py-0.5 font-mono text-[13px] text-blue-600 dark:border-slate-800 dark:bg-slate-800/70 dark:text-blue-400"
           >
             {code[1]}
           </code>
@@ -89,10 +89,10 @@ export function AnswerText({
           return (
             <div
               key={b}
-              className="my-3 overflow-hidden rounded-xl border border-zinc-200 bg-zinc-900 text-zinc-100 dark:border-zinc-800"
+              className="my-3 overflow-hidden rounded-xl border border-slate-200 bg-slate-900 text-slate-100 dark:border-slate-800"
             >
               {lang && (
-                <div className="border-b border-zinc-800 bg-zinc-950/60 px-3.5 py-1.5 text-[11px] font-mono text-zinc-400">
+                <div className="border-b border-slate-800 bg-slate-950/60 px-3.5 py-1.5 text-[11px] font-mono text-slate-400">
                   {lang}
                 </div>
               )}
@@ -111,7 +111,7 @@ export function AnswerText({
           return (
             <List
               key={b}
-              className={`${ordered ? "list-decimal" : "list-disc"} my-2 space-y-1.5 pl-5 marker:text-indigo-500`}
+              className={`${ordered ? "list-decimal" : "list-disc"} my-2 space-y-1.5 pl-5 marker:text-blue-500`}
             >
               {lines.map((line, l) => (
                 <li key={l}>
@@ -137,7 +137,7 @@ export function AnswerText({
                 <span key={l}>
                   {l > 0 && <br />}
                   {heading ? (
-                    <strong className="mt-3 block text-base font-bold text-zinc-900 dark:text-white">
+                    <strong className="mt-3 block text-base font-bold text-slate-900 dark:text-white">
                       {content}
                     </strong>
                   ) : (

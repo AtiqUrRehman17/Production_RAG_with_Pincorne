@@ -21,32 +21,33 @@ export function AppLayout() {
   const tabs: NavItem[] = [...items, ["/account", "Account", "user"]];
 
   return (
-    <div className="flex h-dvh overflow-hidden bg-white dark:bg-zinc-950">
-      <aside className="hidden w-[72px] shrink-0 flex-col items-center gap-2 border-r border-zinc-200/90 bg-zinc-50/80 py-3.5 backdrop-blur-md md:flex dark:border-zinc-800/90 dark:bg-zinc-950">
-        <NavLink to="/chat" className="mb-4 transition-transform hover:scale-105" title="RAG Documents Home">
+    <div className="flex h-dvh overflow-hidden bg-white dark:bg-slate-950">
+      <aside className="hidden w-60 shrink-0 flex-col gap-6 border-r border-slate-200 bg-white px-3 py-5 md:flex dark:border-slate-800 dark:bg-slate-950">
+        <NavLink to="/chat" className="flex items-center gap-3 px-2" title="RAG Documents Home">
           <Logo size="md" />
+          <span className="text-sm font-semibold tracking-tight text-slate-900 dark:text-white">RAG Documents</span>
         </NavLink>
 
-        <div className="flex w-full flex-col items-center gap-1.5 px-2">
+        <div className="flex w-full flex-col gap-1">
           {items.map(([path, label, icon]) => (
             <NavLink
               key={path}
               to={path}
               className={({ isActive }) =>
                 cx(
-                  "group relative flex w-13 flex-col items-center gap-1 rounded-xl py-2.5 text-[10px] font-semibold tracking-wide transition-all",
+                  "group relative flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                   isActive
-                    ? "bg-white text-indigo-600 shadow-xs ring-1 ring-zinc-200 dark:bg-zinc-900 dark:text-indigo-400 dark:ring-zinc-800"
-                    : "text-zinc-500 hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-zinc-100"
+                    ? "bg-blue-50 text-blue-800 dark:bg-blue-950/50 dark:text-blue-300"
+                    : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-100"
                 )
               }
             >
               {({ isActive }) => (
                 <>
                   {isActive && (
-                    <span className="absolute -left-2 top-2 bottom-2 w-1 rounded-r-full bg-indigo-600 dark:bg-indigo-500" />
+                    <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-r-full bg-blue-700 dark:bg-blue-400" />
                   )}
-                  <Icon name={icon} className="size-5 transition-transform group-hover:scale-110" />
+                  <Icon name={icon} className="size-[18px] shrink-0" />
                   <span>{label}</span>
                 </>
               )}
@@ -54,11 +55,11 @@ export function AppLayout() {
           ))}
         </div>
 
-        <div className="mt-auto flex flex-col items-center gap-3">
+        <div className="mt-auto flex items-center justify-between border-t border-slate-200 pt-4 dark:border-slate-800">
           <button
             type="button"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="grid size-10 place-items-center rounded-xl text-zinc-500 transition hover:bg-zinc-200/60 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+            className="grid size-10 place-items-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-100"
             title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
             <Icon name={theme === "dark" ? "sun" : "moon"} className="size-5" />
@@ -69,8 +70,8 @@ export function AppLayout() {
             title="Account Settings"
             className={({ isActive }) =>
               cx(
-                "relative grid size-10 place-items-center rounded-full bg-linear-to-br from-indigo-500 to-violet-600 text-xs font-bold text-white shadow-xs transition hover:opacity-90 ring-2 ring-offset-2 ring-offset-zinc-50 dark:ring-offset-zinc-950",
-                isActive ? "ring-indigo-600" : "ring-transparent"
+                "relative grid size-10 place-items-center rounded-full bg-blue-700 text-xs font-semibold text-white transition hover:bg-blue-800 ring-2 ring-offset-2 ring-offset-white dark:ring-offset-slate-950",
+                isActive ? "ring-blue-600" : "ring-transparent"
               )
             }
           >
@@ -84,7 +85,7 @@ export function AppLayout() {
           <Outlet />
         </div>
         <nav
-          className="pb-safe grid border-t border-zinc-200 bg-white/95 backdrop-blur md:hidden dark:border-zinc-800 dark:bg-zinc-950/95"
+          className="pb-safe grid border-t border-slate-200 bg-white/95 backdrop-blur md:hidden dark:border-slate-800 dark:bg-slate-950/95"
           style={{ gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }}
         >
           {tabs.map(([path, label, icon]) => (
@@ -95,8 +96,8 @@ export function AppLayout() {
                 cx(
                   "flex flex-col items-center gap-0.5 py-2 text-[10px] font-semibold uppercase tracking-wider",
                   isActive
-                    ? "text-indigo-600 dark:text-indigo-400"
-                    : "text-zinc-500 dark:text-zinc-400"
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-slate-500 dark:text-slate-400"
                 )
               }
             >

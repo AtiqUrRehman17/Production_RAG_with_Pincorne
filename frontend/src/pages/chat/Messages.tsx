@@ -17,7 +17,7 @@ import type { PendingAnswer } from "./useChatStream";
 export function UserMessage({ content }: { content: string }) {
   return (
     <div className="fade-in flex justify-end">
-      <div className="max-w-[85%] whitespace-pre-wrap wrap-break-word rounded-2xl rounded-br-sm bg-indigo-600 px-4 py-2.5 text-[15px] leading-relaxed text-white shadow-xs sm:max-w-[75%] dark:bg-indigo-600">
+      <div className="max-w-[85%] whitespace-pre-wrap wrap-break-word rounded-2xl rounded-br-sm bg-blue-600 px-4 py-2.5 text-[15px] leading-relaxed text-white shadow-xs sm:max-w-[75%] dark:bg-blue-600">
         {content}
       </div>
     </div>
@@ -50,22 +50,22 @@ export function PendingMessage({ pending }: { pending: PendingAnswer }) {
       <Logo size="sm" />
       <div className="min-w-0 flex-1 pt-0.5">
         {pending.text ? (
-          <div className="caret space-y-3 text-[15px] leading-7 text-zinc-800 dark:text-zinc-200">
+          <div className="caret space-y-3 text-[15px] leading-7 text-slate-800 dark:text-slate-200">
             <AnswerText text={pending.text} citations={STREAMING_CITATIONS} onCite={() => {}} />
           </div>
         ) : (
-          <div className="rounded-xl border border-zinc-200/80 bg-zinc-50/70 p-3.5 backdrop-blur-xs sm:max-w-md dark:border-zinc-800 dark:bg-zinc-900/50">
-            <div className="flex items-center gap-2.5 text-xs font-medium text-zinc-700 dark:text-zinc-300">
+          <div className="rounded-xl border border-slate-200/80 bg-slate-50/70 p-3.5 backdrop-blur-xs sm:max-w-md dark:border-slate-800 dark:bg-slate-900/50">
+            <div className="flex items-center gap-2.5 text-xs font-medium text-slate-700 dark:text-slate-300">
               <span className="relative flex size-2">
-                <span className="pulse-radar absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75" />
-                <span className="relative inline-flex size-2 rounded-full bg-indigo-500" />
+                <span className="pulse-radar absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-blue-500" />
               </span>
-              <span className="font-semibold uppercase tracking-wider text-[10px] text-indigo-600 dark:text-indigo-400">
+              <span className="font-semibold uppercase tracking-wider text-[10px] text-blue-600 dark:text-blue-400">
                 RAG Pipeline Active
               </span>
             </div>
-            <div className="mt-2 flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400">
-              <span className="dots flex gap-1 text-indigo-500"><span /><span /><span /></span>
+            <div className="mt-2 flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
+              <span className="dots flex gap-1 text-blue-500"><span /><span /><span /></span>
               <span className="transition-all duration-300">{PIPELINE_STEPS[stepIndex]}</span>
             </div>
           </div>
@@ -182,23 +182,23 @@ export function AssistantMessage({
     );
   } else if (message.found === false) {
     body = (
-      <div className="rounded-xl border border-zinc-200/90 bg-zinc-50/70 p-4 text-sm text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-100">
+      <div className="rounded-xl border border-slate-200/90 bg-slate-50/70 p-4 text-sm text-slate-900 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-100">
         <div className="flex items-start gap-3">
           <div className="grid size-8 shrink-0 place-items-center rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
             <Icon name="shield" className="size-4" />
           </div>
           <div>
-            <h4 className="font-semibold text-zinc-900 dark:text-zinc-100">
+            <h4 className="font-semibold text-slate-900 dark:text-slate-100">
               Information not found in active documents
             </h4>
-            <p className="mt-1 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
+            <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
               The RAG guardrails verified that your selected documents do not contain sufficient evidence to answer this. To avoid hallucination, an ungrounded answer was not generated.
             </p>
             <div className="mt-3 flex flex-wrap gap-2 text-xs">
-              <span className="rounded-md border border-zinc-200 bg-white px-2 py-0.5 text-[11px] text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+              <span className="rounded-md border border-slate-200 bg-white px-2 py-0.5 text-[11px] text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
                 Tip: Check the document filter scope
               </span>
-              <span className="rounded-md border border-zinc-200 bg-white px-2 py-0.5 text-[11px] text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+              <span className="rounded-md border border-slate-200 bg-white px-2 py-0.5 text-[11px] text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
                 Tip: Rephrase with terms from the document
               </span>
             </div>
@@ -208,7 +208,7 @@ export function AssistantMessage({
     );
   } else {
     body = (
-      <div className="space-y-3 wrap-break-word text-[15px] leading-7 text-zinc-800 dark:text-zinc-200">
+      <div className="space-y-3 wrap-break-word text-[15px] leading-7 text-slate-800 dark:text-slate-200">
         <AnswerText
           text={message.content}
           citations={citations.map((c) => c.number)}
@@ -229,11 +229,11 @@ export function AssistantMessage({
         {/* Rewritten follow-up tag */}
         {message.searched_for && (
           <p
-            className="mb-2 inline-flex items-center gap-1.5 rounded-md bg-zinc-100 px-2 py-0.5 text-xs text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400"
+            className="mb-2 inline-flex items-center gap-1.5 rounded-md bg-slate-100 px-2 py-0.5 text-xs text-slate-500 dark:bg-slate-800 dark:text-slate-400"
             title="Your follow-up query was expanded to search stand-alone"
           >
-            <Icon name="search" className="size-3 text-indigo-500" />
-            <span>Searched for: <strong className="font-semibold text-zinc-700 dark:text-zinc-300">"{message.searched_for}"</strong></span>
+            <Icon name="search" className="size-3 text-blue-500" />
+            <span>Searched for: <strong className="font-semibold text-slate-700 dark:text-slate-300">"{message.searched_for}"</strong></span>
           </p>
         )}
 
@@ -246,14 +246,14 @@ export function AssistantMessage({
               type="button"
               onClick={() => setSourcesOpen(!sourcesOpen)}
               aria-expanded={sourcesOpen}
-              className="inline-flex max-w-full items-center gap-2 rounded-xl border border-zinc-200/90 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 shadow-2xs hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+              className="inline-flex max-w-full items-center gap-2 rounded-xl border border-slate-200/90 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
             >
               <span className="flex size-2 rounded-full bg-emerald-500" />
               <span className="truncate">
                 {citations.length} Verified Source{citations.length > 1 ? "s" : ""}
               </span>
-              <span className="text-zinc-300 dark:text-zinc-700">•</span>
-              <span className="truncate text-zinc-500 dark:text-zinc-400">
+              <span className="text-slate-300 dark:text-slate-700">•</span>
+              <span className="truncate text-slate-500 dark:text-slate-400">
                 {files.length === 1 ? files[0] : `${files.length} files`}
               </span>
               <Icon
@@ -279,7 +279,7 @@ export function AssistantMessage({
 
         {/* Message Actions / Feedback / Latency */}
         {message.status !== "error" && (
-          <div className="mt-2.5 flex flex-wrap items-center gap-1 text-xs text-zinc-400">
+          <div className="mt-2.5 flex flex-wrap items-center gap-1 text-xs text-slate-400">
             {message.found !== false && (
               <button
                 type="button"
@@ -317,7 +317,7 @@ export function AssistantMessage({
               <Icon name="thumb" className="size-3.5 rotate-180" />
             </button>
 
-            <span className="ml-2 flex items-center gap-1 text-[11px] text-zinc-400">
+            <span className="ml-2 flex items-center gap-1 text-[11px] text-slate-400">
               <Icon name="clock" className="size-3" />
               {message.latency_ms != null && `${(message.latency_ms / 1000).toFixed(1)}s · `}
               {formatRelative(message.created_at)}
@@ -326,7 +326,7 @@ export function AssistantMessage({
             {isAdmin && message.trace_id && (
               <Link
                 to={`/admin?tab=traces&trace=${message.trace_id}`}
-                className="ml-2 inline-flex items-center gap-1 text-[11px] text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400"
+                className="ml-2 inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
               >
                 <Icon name="list" className="size-3" /> Trace
               </Link>
@@ -338,10 +338,10 @@ export function AssistantMessage({
         {commentOpen && (
           <form
             onSubmit={sendComment}
-            className="fade-in mt-2.5 rounded-xl border border-zinc-200/90 bg-zinc-50/80 p-3.5 dark:border-zinc-800 dark:bg-zinc-900"
+            className="fade-in mt-2.5 rounded-xl border border-slate-200/90 bg-slate-50/80 p-3.5 dark:border-slate-800 dark:bg-slate-900"
           >
-            <label className="text-xs font-semibold text-zinc-800 dark:text-zinc-200" htmlFor={`fb-${message.id}`}>
-              What could be improved? <span className="font-normal text-zinc-400">(optional)</span>
+            <label className="text-xs font-semibold text-slate-800 dark:text-slate-200" htmlFor={`fb-${message.id}`}>
+              What could be improved? <span className="font-normal text-slate-400">(optional)</span>
             </label>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {FEEDBACK_TAGS.map((tag) => (
@@ -353,7 +353,7 @@ export function AssistantMessage({
                     box.value = box.value ? `${box.value}, ${tag}` : tag;
                     box.focus();
                   }}
-                  className="rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-700 transition hover:border-indigo-400 hover:text-indigo-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:text-white"
+                  className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-700 transition hover:border-blue-400 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:text-white"
                 >
                   {tag}
                 </button>

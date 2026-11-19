@@ -37,10 +37,10 @@ export function SourceCard({
     <div
       id={id}
       className={cx(
-        "group relative rounded-xl border bg-white p-3.5 text-sm shadow-xs transition-all duration-300 dark:bg-zinc-900/90",
+        "group relative rounded-xl border bg-white p-3.5 text-sm shadow-xs transition-all duration-300 dark:bg-slate-900/90",
         highlighted
-          ? "border-indigo-500 ring-4 ring-indigo-500/25 shadow-md shadow-indigo-500/10 dark:border-indigo-400 dark:ring-indigo-400/20"
-          : "border-zinc-200/90 hover:border-zinc-300 dark:border-zinc-800 dark:hover:border-zinc-700"
+          ? "border-blue-500 ring-4 ring-blue-500/25 shadow-md shadow-blue-500/10 dark:border-blue-400 dark:ring-blue-400/20"
+          : "border-slate-200/90 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700"
       )}
     >
       <div className="flex items-start justify-between gap-2.5">
@@ -48,18 +48,18 @@ export function SourceCard({
           <span className={cx(citeBadge, "font-mono font-bold")}>[{source.number}]</span>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                 {ext}
               </span>
               <p
-                className="truncate font-semibold text-zinc-900 dark:text-zinc-100"
+                className="truncate font-semibold text-slate-900 dark:text-slate-100"
                 title={source.file_name ?? source.label}
               >
                 {source.file_name ?? source.label}
               </p>
             </div>
             {where && (
-              <p className="truncate text-xs text-zinc-500 dark:text-zinc-400" title={where}>
+              <p className="truncate text-xs text-slate-500 dark:text-slate-400" title={where}>
                 {where}
               </p>
             )}
@@ -75,11 +75,11 @@ export function SourceCard({
                 : `Similarity score: ${(rawScore ?? 0).toFixed(3)} (Gemini embedding cosine)`
             }
           >
-            <div className="inline-flex items-center gap-1 rounded-md bg-zinc-100 px-1.5 py-0.5 text-[11px] font-semibold tabular-nums text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+            <div className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] font-semibold tabular-nums text-slate-700 dark:bg-slate-800 dark:text-slate-300">
               <span
                 className={cx(
                   "size-1.5 rounded-full",
-                  scorePercent >= 70 ? "bg-emerald-500" : scorePercent >= 40 ? "bg-indigo-500" : "bg-amber-500"
+                  scorePercent >= 70 ? "bg-emerald-500" : scorePercent >= 40 ? "bg-blue-500" : "bg-amber-500"
                 )}
               />
               {scorePercent}% match
@@ -88,7 +88,7 @@ export function SourceCard({
         )}
       </div>
 
-      <div className="mt-2.5 rounded-lg bg-zinc-50/70 p-2.5 text-zinc-700 dark:bg-zinc-950/50 dark:text-zinc-300">
+      <div className="mt-2.5 rounded-lg bg-slate-50/70 p-2.5 text-slate-700 dark:bg-slate-950/50 dark:text-slate-300">
         <p
           className={cx(
             "whitespace-pre-line text-[13px] leading-relaxed",
@@ -104,7 +104,7 @@ export function SourceCard({
           <button
             type="button"
             onClick={() => setExpanded(!expanded)}
-            className="text-xs font-medium text-indigo-600 hover:text-indigo-700 hover:underline dark:text-indigo-400 dark:hover:text-indigo-300"
+            className="text-xs font-medium text-blue-600 hover:text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
           >
             {expanded ? "Show less" : "Show full passage"}
           </button>
@@ -115,7 +115,7 @@ export function SourceCard({
         <button
           type="button"
           onClick={copyPassage}
-          className="opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100 inline-flex items-center gap-1 text-[11px] font-medium text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+          className="opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100 inline-flex items-center gap-1 text-[11px] font-medium text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
           title="Copy passage excerpt"
         >
           <Icon name="copy" className="size-3" />

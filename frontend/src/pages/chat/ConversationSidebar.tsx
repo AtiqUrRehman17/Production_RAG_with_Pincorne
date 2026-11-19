@@ -46,7 +46,7 @@ export function ConversationSidebar({
     <aside
       className={cx(
         mobile ? "drawer-in flex h-full w-80 max-w-[85vw] shadow-2xl" : "hidden w-72 lg:flex",
-        "shrink-0 flex-col border-r border-zinc-200/90 bg-zinc-50/70 backdrop-blur-md dark:border-zinc-800/90 dark:bg-zinc-950/70"
+        "shrink-0 flex-col border-r border-slate-200/90 bg-slate-50/70 backdrop-blur-md dark:border-slate-800/90 dark:bg-slate-950/70"
       )}
     >
       <div className="flex items-center gap-2 p-3 pb-2">
@@ -55,7 +55,7 @@ export function ConversationSidebar({
           onClick={onNewChat}
           className={cx(
             button("primary"),
-            "flex-1 shadow-sm shadow-indigo-600/20 font-semibold tracking-wide"
+            "flex-1 shadow-sm shadow-blue-600/20 font-semibold tracking-wide"
           )}
         >
           <Icon name="plus" className="size-4" /> New chat
@@ -74,7 +74,7 @@ export function ConversationSidebar({
 
       <div className="px-3 pb-2">
         <div className="relative">
-          <span className="pointer-events-none absolute inset-y-0 left-2.5 grid place-items-center text-zinc-400">
+          <span className="pointer-events-none absolute inset-y-0 left-2.5 grid place-items-center text-slate-400">
             <Icon name="search" className="size-3.5" />
           </span>
           <input
@@ -82,13 +82,13 @@ export function ConversationSidebar({
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search conversations…"
             aria-label="Search conversations"
-            className={cx(fieldBase, "py-1.5 pl-8 pr-7 text-xs dark:bg-zinc-900/80")}
+            className={cx(fieldBase, "py-1.5 pl-8 pr-7 text-xs dark:bg-slate-900/80")}
           />
           {search && (
             <button
               type="button"
               onClick={() => setSearch("")}
-              className="absolute inset-y-0 right-2 grid place-items-center text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="absolute inset-y-0 right-2 grid place-items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
             >
               <Icon name="x" className="size-3" />
             </button>
@@ -110,25 +110,25 @@ export function ConversationSidebar({
 
         {query.isSuccess && !all.length && (
           <div className="px-3 py-8 text-center">
-            <Icon name="chat" className="mx-auto size-6 text-zinc-300 dark:text-zinc-600" />
-            <p className="mt-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">
+            <Icon name="chat" className="mx-auto size-6 text-slate-300 dark:text-slate-600" />
+            <p className="mt-2 text-xs font-medium text-slate-600 dark:text-slate-400">
               No conversations yet
             </p>
-            <p className="mt-0.5 text-[11px] text-zinc-400 dark:text-zinc-500">
+            <p className="mt-0.5 text-[11px] text-slate-400 dark:text-slate-500">
               Your inquiry history will appear here.
             </p>
           </div>
         )}
 
         {query.isSuccess && all.length > 0 && !groups.length && (
-          <p className="px-3 py-6 text-center text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="px-3 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
             No chats match "{search}".
           </p>
         )}
 
         {groups.map(([label, items]) => (
           <div key={label} className="mt-2">
-            <p className="px-3 pb-1 pt-2 text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+            <p className="px-3 pb-1 pt-2 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
               {label}
             </p>
             {items.map((c) => (
@@ -140,19 +140,19 @@ export function ConversationSidebar({
                   cx(
                     "group relative flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs transition-colors",
                     isActive
-                      ? "bg-white font-semibold text-zinc-900 shadow-xs ring-1 ring-zinc-200 dark:bg-zinc-800/90 dark:text-white dark:ring-zinc-700"
-                      : "text-zinc-600 hover:bg-zinc-200/60 dark:text-zinc-400 dark:hover:bg-zinc-800/50"
+                      ? "bg-white font-semibold text-slate-900 shadow-xs ring-1 ring-slate-200 dark:bg-slate-800/90 dark:text-white dark:ring-slate-700"
+                      : "text-slate-600 hover:bg-slate-200/60 dark:text-slate-400 dark:hover:bg-slate-800/50"
                   )
                 }
               >
                 <Icon
                   name="chat"
-                  className="size-3.5 shrink-0 text-zinc-400 group-hover:text-indigo-500"
+                  className="size-3.5 shrink-0 text-slate-400 group-hover:text-blue-500"
                 />
                 <span className="min-w-0 flex-1 truncate">{c.title || "New chat"}</span>
                 {c.document_ids && (
                   <span
-                    className="shrink-0 rounded-xs bg-zinc-200/80 px-1 py-0.5 text-[9px] font-mono text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300"
+                    className="shrink-0 rounded-xs bg-slate-200/80 px-1 py-0.5 text-[9px] font-mono text-slate-600 dark:bg-slate-700 dark:text-slate-300"
                     title={`Restricted to ${c.document_ids.length} document${c.document_ids.length > 1 ? "s" : ""}`}
                   >
                     {c.document_ids.length} doc{c.document_ids.length > 1 ? "s" : ""}
@@ -176,16 +176,16 @@ export function ConversationSidebar({
       </nav>
 
       {/* Footer knowledge summary */}
-      <div className="border-t border-zinc-200/80 p-3 text-xs text-zinc-500 dark:border-zinc-800/80 dark:text-zinc-400">
+      <div className="border-t border-slate-200/80 p-3 text-xs text-slate-500 dark:border-slate-800/80 dark:text-slate-400">
         <Link
           to="/documents"
-          className="flex items-center justify-between rounded-lg px-2 py-1.5 transition hover:bg-zinc-200/60 dark:hover:bg-zinc-800"
+          className="flex items-center justify-between rounded-lg px-2 py-1.5 transition hover:bg-slate-200/60 dark:hover:bg-slate-800"
         >
           <span className="flex items-center gap-2 font-medium">
-            <Icon name="doc" className="size-4 text-indigo-500" />
+            <Icon name="doc" className="size-4 text-blue-500" />
             <span>Knowledge Base</span>
           </span>
-          <span className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500">
+          <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500">
             {plural(documentCount, "doc")} · {plural(passageCount, "passage")}
           </span>
         </Link>

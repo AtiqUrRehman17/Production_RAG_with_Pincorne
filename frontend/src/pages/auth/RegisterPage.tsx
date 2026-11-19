@@ -41,10 +41,10 @@ export function RegisterPage() {
   return (
     <AuthLayout>
       <h1 className="text-2xl font-semibold tracking-tight">Create your account</h1>
-      <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Your documents stay private to you.</p>
+      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Your documents stay private to you.</p>
       <form onSubmit={submit} className="mt-8 space-y-4">
         <div>
-          <label className={label} htmlFor="name">Name <span className="font-normal text-zinc-400">(optional)</span></label>
+          <label className={label} htmlFor="name">Name <span className="font-normal text-slate-400">(optional)</span></label>
           <input id="name" name="name" autoComplete="name" maxLength={100} autoFocus className={field} placeholder="Sam Carter" />
         </div>
         <div>
@@ -59,7 +59,7 @@ export function RegisterPage() {
         <ErrorMessage error={error} />
         <button type="submit" disabled={busy} className={`${button("primary", "lg")} w-full`}>{busy ? "Creating your account…" : "Create account"}</button>
       </form>
-      <p className="mt-6 text-center text-sm text-zinc-500 dark:text-zinc-400">
+      <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
         Already registered? <Link to="/login" className={link}>Log in</Link>
       </p>
     </AuthLayout>

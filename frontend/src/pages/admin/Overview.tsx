@@ -16,9 +16,9 @@ const JOB_TYPES: Record<string, string> = { ingest: "Uploads", delete: "Deletes"
 function Stat({ title, value, sub, valueClass, children }: { title: string; value: string; sub: string; valueClass?: string; children?: ReactNode }) {
   return (
     <div className={cx(card, "p-4 sm:p-5")}>
-      <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400">{title}</p>
+      <p className="text-xs font-medium text-slate-500 dark:text-slate-400">{title}</p>
       <p className={cx("mt-1.5 text-2xl font-semibold tracking-tight tabular-nums", valueClass)}>{value}</p>
-      <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">{sub}</p>
+      <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">{sub}</p>
       {children && <div className="mt-4">{children}</div>}
     </div>
   );
@@ -59,7 +59,7 @@ export function Overview({ links, readiness }: { links: AdminLinks; readiness: U
               sub={q.p95_latency_ms != null ? `average · 95% under ${(q.p95_latency_ms / 1000).toFixed(1)} s` : "no answers yet"} />
         <Stat title="Feedback" value={rated ? percent(feedback.up / rated) : "–"} sub={`${feedback.up} good · ${feedback.down} bad`}
               valueClass={rated ? "text-emerald-600 dark:text-emerald-400" : undefined}>
-          <div className="flex h-2.5 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
+          <div className="flex h-2.5 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
             {rated > 0 && <><span className="bg-emerald-500" style={{ width: `${(feedback.up / rated) * 100}%` }} />
                             <span className="bg-rose-400" style={{ width: `${(feedback.down / rated) * 100}%` }} /></>}
           </div>
@@ -71,22 +71,22 @@ export function Overview({ links, readiness }: { links: AdminLinks; readiness: U
           <h3 className="text-sm font-semibold">How questions were answered</h3>
           {q.total ? (
             <>
-              <div className="mt-5 flex h-4 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
-                <span className="bg-indigo-500" style={{ width: `${(answered / total) * 100}%` }} />
+              <div className="mt-5 flex h-4 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+                <span className="bg-blue-500" style={{ width: `${(answered / total) * 100}%` }} />
                 <span className="bg-amber-400" style={{ width: `${(notFound / total) * 100}%` }} />
                 <span className="bg-rose-500" style={{ width: `${(failed / total) * 100}%` }} />
               </div>
               <div className="mt-4 grid grid-cols-3 gap-3 text-sm">
-                {[["Answered", answered, "bg-indigo-500"], ["Not found", notFound, "bg-amber-400"], ["Failed", failed, "bg-rose-500"]].map(([name, count, color]) => (
+                {[["Answered", answered, "bg-blue-500"], ["Not found", notFound, "bg-amber-400"], ["Failed", failed, "bg-rose-500"]].map(([name, count, color]) => (
                   <div key={name as string}>
-                    <p className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400"><span className={cx("size-2 rounded-sm", color as string)} />{name}</p>
+                    <p className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400"><span className={cx("size-2 rounded-sm", color as string)} />{name}</p>
                     <p className="mt-0.5 text-lg font-semibold tabular-nums">{count}</p>
                   </div>
                 ))}
               </div>
             </>
-          ) : <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">No questions in this period.</p>}
-          <div className="mt-5 flex flex-wrap gap-2 border-t border-zinc-100 pt-4 text-xs dark:border-zinc-800">
+          ) : <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">No questions in this period.</p>}
+          <div className="mt-5 flex flex-wrap gap-2 border-t border-slate-100 pt-4 text-xs dark:border-slate-800">
             <button type="button" onClick={() => links.showLogs("")} className={cx(badge, logs.errors ? tone.red : tone.gray)}>{logs.errors} errors logged</button>
             <span className={cx(badge, logs.warnings ? tone.amber : tone.gray)}>{logs.warnings} warnings</span>
           </div>
@@ -98,18 +98,18 @@ export function Overview({ links, readiness }: { links: AdminLinks; readiness: U
           {readiness.isError && <div className="mt-3"><ErrorMessage error={readiness.error} /></div>}
           {readiness.data && (
             <>
-              <ul className="mt-2 divide-y divide-zinc-100 dark:divide-zinc-800">
+              <ul className="mt-2 divide-y divide-slate-100 dark:divide-slate-800">
                 {Object.entries(readiness.data.checks).map(([name, check]) => (
                   <li key={name} className="flex items-center gap-3 py-2.5">
                     <span className={cx("grid size-6 shrink-0 place-items-center rounded-full", check.ok ? tone.green : tone.red)}>
                       <Icon name={check.ok ? "check" : "x"} className="size-3.5" />
                     </span>
                     <span className="flex-1 text-sm font-medium capitalize">{name}</span>
-                    {check.detail && <span className="max-w-[55%] truncate text-xs text-zinc-500 dark:text-zinc-400" title={check.detail}>{check.detail}</span>}
+                    {check.detail && <span className="max-w-[55%] truncate text-xs text-slate-500 dark:text-slate-400" title={check.detail}>{check.detail}</span>}
                   </li>
                 ))}
               </ul>
-              <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
                 API keys set: {Object.entries(readiness.data.api_keys).filter(([, set]) => set).map(([name]) => name).join(", ") || "none"}
                 {Object.values(readiness.data.api_keys).some((set) => !set) && (
                   <span className="text-amber-600 dark:text-amber-400"> · missing: {Object.entries(readiness.data.api_keys).filter(([, set]) => !set).map(([name]) => name).join(", ")}</span>
@@ -126,14 +126,14 @@ export function Overview({ links, readiness }: { links: AdminLinks; readiness: U
           {jobRows.length ? (
             <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
               {jobRows.map((row) => (
-                <div key={`${row.type}-${row.status}`} className="rounded-xl bg-zinc-50 p-3 text-center dark:bg-zinc-800/50">
+                <div key={`${row.type}-${row.status}`} className="rounded-xl bg-slate-50 p-3 text-center dark:bg-slate-800/50">
                   <p className={cx("text-xl font-semibold tabular-nums", row.status === "failed" ? "text-rose-600 dark:text-rose-400"
                                                                        : row.status === "done" ? "text-emerald-600 dark:text-emerald-400" : "")}>{row.count}</p>
-                  <p className="mt-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">{row.type} {row.status}</p>
+                  <p className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-400">{row.type} {row.status}</p>
                 </div>
               ))}
             </div>
-          ) : <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">No background jobs in this period.</p>}
+          ) : <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">No background jobs in this period.</p>}
         </div>
 
         <div className={cx(card, "p-5")}>
@@ -146,17 +146,17 @@ export function Overview({ links, readiness }: { links: AdminLinks; readiness: U
               {errors.map((entry) => (
                 <li key={entry.id}>
                   <button type="button" onClick={() => entry.request_id && links.showLogs(entry.request_id)}
-                          className="flex w-full items-start gap-2.5 rounded-lg p-2 text-left hover:bg-zinc-50 dark:hover:bg-zinc-800/50">
+                          className="flex w-full items-start gap-2.5 rounded-lg p-2 text-left hover:bg-slate-50 dark:hover:bg-slate-800/50">
                     <span className={cx(badge, tone.red, "shrink-0")}>{entry.level}</span>
                     <span className="min-w-0 flex-1">
                       <span className="line-clamp-1 text-sm">{entry.message}</span>
-                      <span className="text-[11px] text-zinc-500 dark:text-zinc-400">{entry.source} · {formatRelative(entry.created_at)}</span>
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400">{entry.source} · {formatRelative(entry.created_at)}</span>
                     </span>
                   </button>
                 </li>
               ))}
             </ul>
-          ) : <p className="mt-4 flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400"><Icon name="check" className="size-4 text-emerald-500" />No errors in this period.</p>}
+          ) : <p className="mt-4 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400"><Icon name="check" className="size-4 text-emerald-500" />No errors in this period.</p>}
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ function Section({ title, text, danger = false, children }: { title: string; tex
       <div className="grid gap-4 p-5 sm:p-6 md:grid-cols-3">
         <div>
           <h2 className={cx("font-semibold", danger && "text-rose-700 dark:text-rose-400")}>{title}</h2>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{text}</p>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{text}</p>
         </div>
         <div className="md:col-span-2">{children}</div>
       </div>
@@ -71,7 +71,7 @@ export function AccountPage() {
         <PageHeader title="Account" subtitle="Your profile, password and data." />
 
         <div className={cx(card, "flex flex-wrap items-center gap-4 p-5 sm:p-6")}>
-          <div className="grid size-16 place-items-center rounded-full bg-linear-to-br from-amber-400 to-rose-500 text-xl font-semibold text-white">
+          <div className="grid size-16 place-items-center rounded-full bg-blue-700 text-xl font-semibold text-white">
             {initials(user.name || user.email)}
           </div>
           <div className="min-w-0 flex-1">
@@ -79,11 +79,11 @@ export function AccountPage() {
               <p className="text-lg font-semibold">{user.name || user.email.split("@")[0]}</p>
               <span className={cx(badge, isAdmin ? tone.violet : tone.gray)}>{isAdmin && <Icon name="shield" className="size-3" />}{isAdmin ? "Admin" : "User"}</span>
             </div>
-            <p className="truncate text-sm text-zinc-500 dark:text-zinc-400">{user.email}</p>
+            <p className="truncate text-sm text-slate-500 dark:text-slate-400">{user.email}</p>
           </div>
           <dl className="flex gap-6 text-sm">
-            <div><dt className="text-xs text-zinc-500 dark:text-zinc-400">Member since</dt><dd className="font-medium">{formatDate(user.created_at)}</dd></div>
-            <div><dt className="text-xs text-zinc-500 dark:text-zinc-400">Last login</dt><dd className="font-medium">{user.last_login_at ? formatRelative(user.last_login_at) : "–"}</dd></div>
+            <div><dt className="text-xs text-slate-500 dark:text-slate-400">Member since</dt><dd className="font-medium">{formatDate(user.created_at)}</dd></div>
+            <div><dt className="text-xs text-slate-500 dark:text-slate-400">Last login</dt><dd className="font-medium">{user.last_login_at ? formatRelative(user.last_login_at) : "–"}</dd></div>
           </dl>
         </div>
 

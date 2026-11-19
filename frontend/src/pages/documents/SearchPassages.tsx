@@ -23,13 +23,13 @@ export function SearchPassages({ hasDocuments }: { hasDocuments: boolean }) {
     <div className="mt-6">
       <form onSubmit={submit} className="flex gap-2">
         <div className="relative flex-1">
-          <span className="pointer-events-none absolute inset-y-0 left-3 grid place-items-center text-zinc-400"><Icon name="search" className="size-4" /></span>
+          <span className="pointer-events-none absolute inset-y-0 left-3 grid place-items-center text-slate-400"><Icon name="search" className="size-4" /></span>
           <input name="q" required maxLength={4000} aria-label="Search your documents" disabled={!hasDocuments}
                  className={cx(fieldBase, "py-2.5 pl-9 pr-3")} placeholder="Find passages, e.g. “carry over vacation”" />
         </div>
         <button type="submit" disabled={mutation.isPending || !hasDocuments} className={button("primary")}>Search</button>
       </form>
-      <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+      <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
         Shows the matching passages without writing an answer: useful to check what the chat can find.
       </p>
       <div className="mt-6 space-y-3">
@@ -41,7 +41,7 @@ export function SearchPassages({ hasDocuments }: { hasDocuments: boolean }) {
         {mutation.isError && <ErrorMessage error={mutation.error} />}
         {mutation.isSuccess && (mutation.data.passages.length ? (
           <>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">{plural(mutation.data.passages.length, "passage")} · ranked by {mutation.data.ranking}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">{plural(mutation.data.passages.length, "passage")} · ranked by {mutation.data.ranking}</p>
             <div className="grid gap-3 md:grid-cols-2">
               {mutation.data.passages.map((passage) => <SourceCard key={passage.number} source={passage} />)}
             </div>

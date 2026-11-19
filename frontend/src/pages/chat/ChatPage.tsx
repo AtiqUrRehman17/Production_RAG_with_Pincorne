@@ -136,7 +136,7 @@ export function ChatPage() {
     content = (
       <div className="grid h-full place-items-center px-4 text-center">
         <div className="max-w-sm space-y-4">
-          {missing ? <p className="text-sm text-zinc-500 dark:text-zinc-400">This chat doesn't exist, or it was deleted.</p>
+          {missing ? <p className="text-sm text-slate-500 dark:text-slate-400">This chat doesn't exist, or it was deleted.</p>
                    : <ErrorMessage error={conversation.error} />}
           <button type="button" onClick={newChat} className={button("primary")}><Icon name="plus" className="size-4" /> New chat</button>
         </div>
@@ -163,13 +163,13 @@ export function ChatPage() {
       <ConversationSidebar {...sidebarProps} />
       {drawerOpen && (
         <div className="fixed inset-0 z-40 flex lg:hidden">
-          <div className="absolute inset-0 bg-zinc-950/40 backdrop-blur-[2px]" onClick={() => setDrawerOpen(false)} />
+          <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px]" onClick={() => setDrawerOpen(false)} />
           <div className="relative"><ConversationSidebar {...sidebarProps} mobile onClose={() => setDrawerOpen(false)} /></div>
         </div>
       )}
 
       <section className="flex min-w-0 flex-1 flex-col">
-        <header className="flex h-14 shrink-0 items-center gap-1.5 border-b border-zinc-200 px-2 sm:px-4 dark:border-zinc-800">
+        <header className="flex h-14 shrink-0 items-center gap-1.5 border-b border-slate-200 px-2 sm:px-4 dark:border-slate-800">
           <button type="button" onClick={() => setDrawerOpen(true)} className={cx(iconButton, "size-9 lg:hidden")} aria-label="Chats">
             <Icon name="menu" />
           </button>

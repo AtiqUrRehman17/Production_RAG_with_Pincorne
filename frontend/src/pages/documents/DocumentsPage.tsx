@@ -38,7 +38,7 @@ export function DocumentsPage() {
               : "Manage your private vector store"
           }
           actions={
-            <label className={cx(button("primary"), "cursor-pointer shadow-sm shadow-indigo-600/20")}>
+            <label className={cx(button("primary"), "cursor-pointer shadow-sm shadow-blue-600/20")}>
               <Icon name="upload" className="size-4" /> Upload Files
               <input
                 type="file"
@@ -58,28 +58,28 @@ export function DocumentsPage() {
         {query.isSuccess && (
           <div className="my-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             <div className={cx(card, "p-4")}>
-              <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">Total Documents</p>
-              <p className="mt-1 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+              <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">Total Documents</p>
+              <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
                 {documents.length}
               </p>
-              <p className="mt-0.5 text-[11px] text-zinc-400">PDF, DOCX, TXT</p>
+              <p className="mt-0.5 text-[11px] text-slate-400">PDF, DOCX, TXT</p>
             </div>
             <div className={cx(card, "p-4")}>
-              <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">Vector Passages</p>
-              <p className="mt-1 text-2xl font-bold tracking-tight text-indigo-600 dark:text-indigo-400">
+              <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">Vector Passages</p>
+              <p className="mt-1 text-2xl font-bold tracking-tight text-blue-600 dark:text-blue-400">
                 {passages.toLocaleString()}
               </p>
-              <p className="mt-0.5 text-[11px] text-zinc-400">800-token chunks</p>
+              <p className="mt-0.5 text-[11px] text-slate-400">800-token chunks</p>
             </div>
             <div className={cx(card, "p-4")}>
-              <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">Storage Used</p>
-              <p className="mt-1 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+              <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">Storage Used</p>
+              <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
                 {formatBytes(totalBytes)}
               </p>
-              <p className="mt-0.5 text-[11px] text-zinc-400">Local upload cache</p>
+              <p className="mt-0.5 text-[11px] text-slate-400">Local upload cache</p>
             </div>
             <div className={cx(card, "p-4")}>
-              <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">Vector Index</p>
+              <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">Vector Index</p>
               <div className="mt-1.5 flex items-center gap-1.5 text-sm font-bold text-emerald-600 dark:text-emerald-400">
                 <span className="relative flex size-2">
                   <span className="pulse-radar absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -87,7 +87,7 @@ export function DocumentsPage() {
                 </span>
                 <span>Active & Synced</span>
               </div>
-              <p className="mt-0.5 text-[11px] text-zinc-400">Pinecone (768d)</p>
+              <p className="mt-0.5 text-[11px] text-slate-400">Pinecone (768d)</p>
             </div>
           </div>
         )}

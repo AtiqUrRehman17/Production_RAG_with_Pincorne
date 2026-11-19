@@ -52,30 +52,30 @@ export function Jobs() {
       <div className={cx(card, "overflow-hidden")}>
         <div className="scroll-thin overflow-x-auto">
           <table className="w-full min-w-[44rem] text-sm">
-            <thead className="border-b border-zinc-200 bg-zinc-50 text-left text-xs text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+            <thead className="border-b border-slate-200 bg-slate-50 text-left text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
               <tr>{["Job", "File", "Status", "Tries", "Took", "Created"].map((h) => <th key={h} className="px-4 py-2.5 font-medium">{h}</th>)}</tr>
             </thead>
-            <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
               {jobs.map((job) => (
-                <tr key={job.id} className="align-top hover:bg-zinc-50/70 dark:hover:bg-zinc-800/30">
+                <tr key={job.id} className="align-top hover:bg-slate-50/70 dark:hover:bg-slate-800/30">
                   <td className="px-4 py-3"><span className="font-medium capitalize">{job.type}</span>
-                    <span className="block font-mono text-[11px] text-zinc-500 dark:text-zinc-400" title={job.id}>{job.id.slice(0, 8)}</span></td>
+                    <span className="block font-mono text-[11px] text-slate-500 dark:text-slate-400" title={job.id}>{job.id.slice(0, 8)}</span></td>
                   <td className="max-w-[18rem] px-4 py-3">
                     <span className="block truncate" title={what(job)}>{what(job)}</span>
                     {job.error && <span className="block text-xs text-rose-600 dark:text-rose-400">{job.error}</span>}
-                    {job.progress?.total ? <span className="block text-xs text-zinc-500 dark:text-zinc-400">{job.progress.step} {job.progress.done}/{job.progress.total}</span> : null}
+                    {job.progress?.total ? <span className="block text-xs text-slate-500 dark:text-slate-400">{job.progress.step} {job.progress.done}/{job.progress.total}</span> : null}
                   </td>
                   <td className="px-4 py-3"><span className={cx(badge, STATUS_TONES[job.status])}>{job.status}</span></td>
-                  <td className="px-4 py-3 tabular-nums text-zinc-500 dark:text-zinc-400">{job.attempts}</td>
-                  <td className="px-4 py-3 tabular-nums text-zinc-500 dark:text-zinc-400">{took(job)}</td>
-                  <td className="px-4 py-3 text-zinc-500 dark:text-zinc-400" title={formatDateTime(job.created_at)}>{formatRelative(job.created_at)}</td>
+                  <td className="px-4 py-3 tabular-nums text-slate-500 dark:text-slate-400">{job.attempts}</td>
+                  <td className="px-4 py-3 tabular-nums text-slate-500 dark:text-slate-400">{took(job)}</td>
+                  <td className="px-4 py-3 text-slate-500 dark:text-slate-400" title={formatDateTime(job.created_at)}>{formatRelative(job.created_at)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
         {query.isPending && <div className="space-y-2 p-4">{[1, 2, 3].map((i) => <div key={i} className="shimmer h-8 rounded" />)}</div>}
-        {query.isSuccess && !jobs.length && <p className="px-6 py-12 text-center text-sm text-zinc-500 dark:text-zinc-400">No jobs match.</p>}
+        {query.isSuccess && !jobs.length && <p className="px-6 py-12 text-center text-sm text-slate-500 dark:text-slate-400">No jobs match.</p>}
       </div>
       {query.hasNextPage && (
         <button type="button" onClick={() => void query.fetchNextPage()} disabled={query.isFetchingNextPage} className={cx(button("secondary"), "w-full")}>

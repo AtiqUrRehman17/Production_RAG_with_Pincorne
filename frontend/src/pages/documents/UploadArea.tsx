@@ -23,20 +23,20 @@ export function DropZone({ onFiles }: { onFiles: (files: File[]) => void }) {
          onDragLeave={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) setOver(false); }}
          onDrop={onDrop}
          className={cx("rounded-2xl border-2 border-dashed px-6 py-8 text-center transition-colors",
-           over ? "border-indigo-500 bg-indigo-50/60 dark:bg-indigo-500/10" : "border-zinc-300 bg-zinc-50/60 dark:border-zinc-700 dark:bg-zinc-900/40")}>
-      <div className="mx-auto grid size-12 place-items-center rounded-xl bg-white text-indigo-600 shadow-sm ring-1 ring-zinc-200
-                      dark:bg-zinc-800 dark:text-indigo-300 dark:ring-zinc-700">
+           over ? "border-blue-500 bg-blue-50/60 dark:bg-blue-500/10" : "border-slate-300 bg-slate-50/60 dark:border-slate-700 dark:bg-slate-900/40")}>
+      <div className="mx-auto grid size-12 place-items-center rounded-xl bg-white text-blue-600 shadow-sm ring-1 ring-slate-200
+                      dark:bg-slate-800 dark:text-blue-300 dark:ring-slate-700">
         <Icon name="upload" className="size-6" />
       </div>
       <p className="mt-4 text-sm font-medium">
         Drop files here, or{" "}
-        <label className="cursor-pointer text-indigo-600 hover:underline dark:text-indigo-400">
+        <label className="cursor-pointer text-blue-600 hover:underline dark:text-blue-400">
           browse
           <input type="file" multiple accept={ACCEPT} className="sr-only"
                  onChange={(event) => { onFiles([...(event.target.files ?? [])]); event.target.value = ""; }} />
         </label>
       </p>
-      <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+      <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
         PDF, DOCX or TXT · up to {MAX_FILE_SIZE_MB} MB each · scanned PDFs aren't supported yet
       </p>
     </div>
@@ -77,12 +77,12 @@ export function UploadList({ items, onDismiss }: { items: UploadItem[]; onDismis
                 <p className="mt-1 text-xs text-rose-600 dark:text-rose-400">{step}</p>
               ) : (
                 <>
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
+                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
                     <div className={cx("h-full rounded-full transition-all duration-300",
-                                       item.phase === "done" ? "bg-emerald-500" : item.phase === "queued" ? "bg-zinc-400 stripes" : "stripes bg-indigo-500")}
+                                       item.phase === "done" ? "bg-emerald-500" : item.phase === "queued" ? "bg-slate-400 stripes" : "stripes bg-blue-500")}
                          style={{ width: `${item.phase === "uploading" ? Math.max(4, item.progress) : 100}%` }} />
                   </div>
-                  <p className="mt-1 flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+                  <p className="mt-1 flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
                     {item.phase === "processing" && <Spinner className="size-3" />}
                     {step}{item.size != null && ` · ${formatBytes(item.size)}`}
                   </p>

@@ -29,10 +29,10 @@ export function Modal({ onClose, wide = false, label, children }: {
   }, []);
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-label={label}>
-      <div className="absolute inset-0 bg-zinc-950/50 backdrop-blur-[2px]" onClick={onClose} />
+      <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-[2px]" onClick={onClose} />
       <div ref={panel}
            className={cx("fade-in pb-safe relative max-h-[90dvh] w-full overflow-y-auto rounded-t-2xl bg-white p-5 shadow-2xl",
-                         "sm:rounded-2xl sm:p-6 dark:bg-zinc-900 dark:ring-1 dark:ring-zinc-800", wide ? "sm:max-w-lg" : "sm:max-w-md")}>
+                         "sm:rounded-2xl sm:p-6 dark:bg-slate-900 dark:ring-1 dark:ring-slate-800", wide ? "sm:max-w-lg" : "sm:max-w-md")}>
         {children}
       </div>
     </div>,
@@ -50,14 +50,14 @@ export function Drawer({ onClose, label, header, children }: {
   useEscape(onClose);
   return createPortal(
     <div className="fixed inset-0 z-50 flex justify-end" role="dialog" aria-modal="true" aria-label={label}>
-      <div className="absolute inset-0 bg-zinc-950/40 backdrop-blur-[2px]" onClick={onClose} />
+      <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px]" onClick={onClose} />
       <aside className="slide-in scroll-thin relative h-full w-full overflow-y-auto bg-white shadow-2xl sm:max-w-2xl
-                        dark:bg-zinc-950 dark:ring-1 dark:ring-zinc-800">
-        <div className="sticky top-0 z-10 flex items-start gap-3 border-b border-zinc-200 bg-white/95 p-4 backdrop-blur
-                        sm:p-5 dark:border-zinc-800 dark:bg-zinc-950/95">
+                        dark:bg-slate-950 dark:ring-1 dark:ring-slate-800">
+        <div className="sticky top-0 z-10 flex items-start gap-3 border-b border-slate-200 bg-white/95 p-4 backdrop-blur
+                        sm:p-5 dark:border-slate-800 dark:bg-slate-950/95">
           <div className="min-w-0 flex-1">{header}</div>
-          <button type="button" onClick={onClose} className="inline-grid size-9 place-items-center rounded-lg text-zinc-500
-                  hover:bg-zinc-100 dark:hover:bg-zinc-800" aria-label="Close"><Icon name="x" /></button>
+          <button type="button" onClick={onClose} className="inline-grid size-9 place-items-center rounded-lg text-slate-500
+                  hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Close"><Icon name="x" /></button>
         </div>
         <div className="space-y-5 p-4 sm:p-5">{children}</div>
       </aside>
@@ -99,7 +99,7 @@ export function ConfirmDialog({ title, text, confirmLabel, onConfirm, onClose, c
         </div>
         <div className="min-w-0">
           <h2 className="font-semibold wrap-break-word">{title}</h2>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{text}</p>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{text}</p>
         </div>
       </div>
       <form onSubmit={submit}>

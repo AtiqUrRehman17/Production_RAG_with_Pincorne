@@ -30,7 +30,7 @@ export function LoginPage() {
   return (
     <AuthLayout>
       <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
-      <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Log in to chat with your documents.</p>
+      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Log in to chat with your documents.</p>
       <form onSubmit={submit} className="mt-8 space-y-4">
         <div>
           <label className={label} htmlFor="email">Email</label>
@@ -40,7 +40,7 @@ export function LoginPage() {
         <ErrorMessage error={error} />
         <button type="submit" disabled={busy} className={`${button("primary", "lg")} w-full`}>{busy ? "Logging in…" : "Log in"}</button>
       </form>
-      <p className="mt-6 text-center text-sm text-zinc-500 dark:text-zinc-400">
+      <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
         No account yet? <Link to="/register" className={link}>Create one</Link>
       </p>
     </AuthLayout>

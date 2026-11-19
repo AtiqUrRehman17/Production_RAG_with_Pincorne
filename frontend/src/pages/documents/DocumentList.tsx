@@ -26,7 +26,7 @@ export function DocumentList({
 
   const actions = (d: DocumentInfo): ReactNode =>
     d.document_id in deleting ? (
-      <span className="flex items-center gap-1.5 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+      <span className="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
         <Spinner className="size-3" /> Deleting…
       </span>
     ) : (
@@ -34,7 +34,7 @@ export function DocumentList({
         <button
           type="button"
           onClick={() => onChat(d)}
-          className={cx(button("ghost", "sm"), "gap-1 text-xs text-indigo-600 hover:text-indigo-700 dark:text-indigo-400")}
+          className={cx(button("ghost", "sm"), "gap-1 text-xs text-blue-600 hover:text-blue-700 dark:text-blue-400")}
           title="Start a new chat dedicated to this document"
         >
           <Icon name="chat" className="size-3.5" />
@@ -55,7 +55,7 @@ export function DocumentList({
     <div className="space-y-3">
       {documents.length > 4 && (
         <div className="relative max-w-sm">
-          <span className="pointer-events-none absolute inset-y-0 left-2.5 grid place-items-center text-zinc-400">
+          <span className="pointer-events-none absolute inset-y-0 left-2.5 grid place-items-center text-slate-400">
             <Icon name="search" className="size-3.5" />
           </span>
           <input
@@ -70,7 +70,7 @@ export function DocumentList({
       {/* Desktop table */}
       <div className={cx(card, "hidden overflow-hidden sm:block shadow-xs")}>
         <table className="w-full text-sm">
-          <thead className="border-b border-zinc-200/90 bg-zinc-50/80 text-left text-xs font-semibold text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900/80 dark:text-zinc-400">
+          <thead className="border-b border-slate-200/90 bg-slate-50/80 text-left text-xs font-semibold text-slate-500 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-400">
             <tr>
               <th className="px-4 py-3 font-semibold">Document Name</th>
               <th className="px-4 py-3 font-semibold">Pages</th>
@@ -80,38 +80,38 @@ export function DocumentList({
               <th className="px-4 py-3 text-right"><span className="sr-only">Actions</span></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800/80">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80">
             {filtered.map((d) => (
               <tr
                 key={d.document_id}
                 className={cx(
                   "transition-colors",
-                  d.document_id in deleting ? "opacity-50" : "hover:bg-zinc-50/70 dark:hover:bg-zinc-800/40"
+                  d.document_id in deleting ? "opacity-50" : "hover:bg-slate-50/70 dark:hover:bg-slate-800/40"
                 )}
               >
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <FileChip type={fileType(d.file_name)} />
                     <div className="min-w-0">
-                      <p className="max-w-[18rem] truncate font-medium text-zinc-900 lg:max-w-md dark:text-zinc-100" title={d.file_name}>
+                      <p className="max-w-[18rem] truncate font-medium text-slate-900 lg:max-w-md dark:text-slate-100" title={d.file_name}>
                         {d.file_name}
                       </p>
-                      <p className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500">
+                      <p className="font-mono text-[10px] text-slate-400 dark:text-slate-500">
                         {d.document_id.slice(0, 8)}…
                       </p>
                     </div>
                   </div>
                 </td>
-                <td className="px-4 py-3 tabular-nums text-zinc-600 dark:text-zinc-400">
+                <td className="px-4 py-3 tabular-nums text-slate-600 dark:text-slate-400">
                   {d.page_count ?? "–"}
                 </td>
-                <td className="px-4 py-3 tabular-nums font-medium text-indigo-600 dark:text-indigo-400">
+                <td className="px-4 py-3 tabular-nums font-medium text-blue-600 dark:text-blue-400">
                   {d.chunk_count}
                 </td>
-                <td className="px-4 py-3 tabular-nums text-zinc-600 dark:text-zinc-400">
+                <td className="px-4 py-3 tabular-nums text-slate-600 dark:text-slate-400">
                   {formatBytes(d.size_bytes)}
                 </td>
-                <td className="px-4 py-3 text-xs text-zinc-500 dark:text-zinc-400" title={formatDate(d.created_at)}>
+                <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400" title={formatDate(d.created_at)}>
                   {formatRelative(d.created_at)}
                 </td>
                 <td className="px-4 py-3">
@@ -121,7 +121,7 @@ export function DocumentList({
             ))}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-4 py-8 text-center text-xs text-zinc-500">
+                <td colSpan={6} className="px-4 py-8 text-center text-xs text-slate-500">
                   No documents match "{filter}".
                 </td>
               </tr>
@@ -139,8 +139,8 @@ export function DocumentList({
           >
             <FileChip type={fileType(d.file_name)} />
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-100">{d.file_name}</p>
-              <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="truncate text-sm font-semibold text-slate-900 dark:text-slate-100">{d.file_name}</p>
+              <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
                 {d.page_count ? `${plural(d.page_count, "page")} · ` : ""}
                 {plural(d.chunk_count, "passage")} · {formatBytes(d.size_bytes)}
               </p>

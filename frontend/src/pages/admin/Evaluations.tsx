@@ -86,7 +86,7 @@ export function Evaluations() {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">Runs against the test questions. Tick two runs to compare them.</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400">Runs against the test questions. Tick two runs to compare them.</p>
         <button type="button" onClick={() => setStarting(true)} disabled={!!running} className={button("primary")}>
           <Icon name="play" className="size-4" /> Start evaluation
         </button>
@@ -98,13 +98,13 @@ export function Evaluations() {
             <>
               <div className="flex items-center justify-between gap-3 text-sm">
                 <span className="font-medium">{job.data.status === "queued" ? "Waiting for the worker" : STEPS[progress?.step ?? ""] ?? "Running"}</span>
-                {progress?.total ? <span className="tabular-nums text-zinc-500 dark:text-zinc-400">{progress.done} / {progress.total}</span> : null}
+                {progress?.total ? <span className="tabular-nums text-slate-500 dark:text-slate-400">{progress.done} / {progress.total}</span> : null}
               </div>
-              <div className="mt-3 h-2 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
-                <div className="stripes h-full rounded-full bg-indigo-500 transition-all"
+              <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+                <div className="stripes h-full rounded-full bg-blue-500 transition-all"
                      style={{ width: `${progress?.total ? Math.max(3, ((progress.done ?? 0) / progress.total) * 100) : 3}%` }} />
               </div>
-              <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">Runs in the background worker; you can leave this page.</p>
+              <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Runs in the background worker; you can leave this page.</p>
             </>
           ) : (
             <div className="flex items-start gap-3 text-sm">
@@ -112,7 +112,7 @@ export function Evaluations() {
                 <Icon name={job.data.status === "done" ? "check" : "x"} className="size-3.5" />
               </span>
               <p className="flex-1">{job.data.status === "done" ? "The evaluation finished. Its run is in the list below." : job.data.error}</p>
-              <button type="button" onClick={() => setDismissed(job.data!.id)} className="text-zinc-400 hover:text-zinc-700" aria-label="Dismiss">
+              <button type="button" onClick={() => setDismissed(job.data!.id)} className="text-slate-400 hover:text-slate-700" aria-label="Dismiss">
                 <Icon name="x" className="size-4" />
               </button>
             </div>
@@ -127,40 +127,40 @@ export function Evaluations() {
         <div className={cx(card, "overflow-hidden")}>
           <div className="scroll-thin overflow-x-auto">
             <table className="w-full min-w-[40rem] text-sm">
-              <thead className="border-b border-zinc-200 bg-zinc-50 text-left text-xs text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+              <thead className="border-b border-slate-200 bg-slate-50 text-left text-xs text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
                 <tr><th className="w-10 px-4 py-2.5"><span className="sr-only">Compare</span></th>
                   {["Run", "Mode", "Passed", "Judges", "Took", "When"].map((h) => <th key={h} className="px-4 py-2.5 font-medium">{h}</th>)}</tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {runs.data.map((run) => {
                   const rate = passRate(run.passed);
                   return (
-                    <tr key={run.file} className="hover:bg-zinc-50/70 dark:hover:bg-zinc-800/30">
+                    <tr key={run.file} className="hover:bg-slate-50/70 dark:hover:bg-slate-800/30">
                       <td className="px-4 py-3">
-                        <input type="checkbox" checked={compare.includes(run.tag)} aria-label={`Compare ${run.tag}`} className="size-4 rounded accent-indigo-600"
+                        <input type="checkbox" checked={compare.includes(run.tag)} aria-label={`Compare ${run.tag}`} className="size-4 rounded accent-blue-600"
                                onChange={() => setCompare((tags) => (tags.includes(run.tag) ? tags.filter((t) => t !== run.tag) : [...tags, run.tag].slice(-2)))} />
                       </td>
                       <td className="px-4 py-3">
-                        <button type="button" onClick={() => setOpenTag(run.tag)} className="font-mono text-xs font-medium text-indigo-600 hover:underline dark:text-indigo-400">{run.tag}</button>
+                        <button type="button" onClick={() => setOpenTag(run.tag)} className="font-mono text-xs font-medium text-blue-600 hover:underline dark:text-blue-400">{run.tag}</button>
                       </td>
-                      <td className="px-4 py-3 text-zinc-500 dark:text-zinc-400">{run.mode === "retrieval" ? "Retrieval only" : "Full"}</td>
+                      <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{run.mode === "retrieval" ? "Retrieval only" : "Full"}</td>
                       <td className="px-4 py-3">
                         {run.passed ? (
                           <div className="flex items-center gap-2">
-                            <div className="h-1.5 w-16 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
+                            <div className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
                               <div className={cx("h-full rounded-full", rate! >= 0.85 ? "bg-emerald-500" : rate! >= 0.7 ? "bg-amber-400" : "bg-rose-500")}
                                    style={{ width: `${rate! * 100}%` }} />
                             </div>
                             <span className="tabular-nums">{run.passed.value}/{run.passed.n}</span>
                           </div>
-                        ) : <span className="text-zinc-400">–</span>}
+                        ) : <span className="text-slate-400">–</span>}
                       </td>
                       <td className="px-4 py-3">
                         {run.judges.length ? run.judges.map((j) => <span key={j} className={cx(badge, tone.violet, "mr-1")}>{j === "ragas" ? "RAGAS" : "DeepEval"}</span>)
-                                           : <span className="text-zinc-400">–</span>}
+                                           : <span className="text-slate-400">–</span>}
                       </td>
-                      <td className="px-4 py-3 tabular-nums text-zinc-500 dark:text-zinc-400">{formatSeconds(run.duration_seconds)}</td>
-                      <td className="px-4 py-3 text-zinc-500 dark:text-zinc-400" title={formatDateTime(run.started_at)}>{formatRelative(run.started_at)}</td>
+                      <td className="px-4 py-3 tabular-nums text-slate-500 dark:text-slate-400">{formatSeconds(run.duration_seconds)}</td>
+                      <td className="px-4 py-3 text-slate-500 dark:text-slate-400" title={formatDateTime(run.started_at)}>{formatRelative(run.started_at)}</td>
                     </tr>
                   );
                 })}
@@ -170,7 +170,7 @@ export function Evaluations() {
         </div>
       )}
 
-      {compare.length === 2 && !comparing && <p className="text-xs text-zinc-500 dark:text-zinc-400">Pick two runs with different names to compare them.</p>}
+      {compare.length === 2 && !comparing && <p className="text-xs text-slate-500 dark:text-slate-400">Pick two runs with different names to compare them.</p>}
       {comparing && (
         <div className={cx(card, "fade-in p-5")}>
           <div className="flex flex-wrap items-center justify-between gap-2">
@@ -190,11 +190,11 @@ export function Evaluations() {
               {comparison.data.judges.map((judge) => (
                 <div key={judge.key}>
                   <p className="mb-1 text-xs font-semibold">{judge.key === "ragas" ? "RAGAS" : "DeepEval"} judge
-                    <span className="font-normal text-zinc-500 dark:text-zinc-400"> · A: {judge.a ?? "not judged"} · B: {judge.b ?? "not judged"}</span></p>
+                    <span className="font-normal text-slate-500 dark:text-slate-400"> · A: {judge.a ?? "not judged"} · B: {judge.b ?? "not judged"}</span></p>
                   <CompareRows rows={judge.metrics} />
                 </div>
               ))}
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Questions that changed: <span className="font-medium text-emerald-600 dark:text-emerald-400">{comparison.data.fixed.length} now pass</span>
                 {" · "}<span className="font-medium text-rose-600 dark:text-rose-400">{comparison.data.broken.length} now fail</span>
               </p>
@@ -202,7 +202,7 @@ export function Evaluations() {
                 <ul className="space-y-2">
                   {comparison.data.broken.map((item) => (
                     <li key={item.id} className="rounded-lg border border-rose-200 p-3 text-sm dark:border-rose-500/30">
-                      <p><span className="font-mono text-xs text-zinc-500">{item.id}</span> {item.question}</p>
+                      <p><span className="font-mono text-xs text-slate-500">{item.id}</span> {item.question}</p>
                       <p className="mt-1 text-xs text-rose-700 dark:text-rose-300">{item.reasons.join(" · ")}</p>
                     </li>
                   ))}
@@ -226,15 +226,15 @@ export function Evaluations() {
 function CompareRows({ rows }: { rows: ComparisonRow[] }) {
   return (
     <div className="space-y-1">
-      <div className="grid grid-cols-[1fr_4.5rem_4.5rem_4.5rem] gap-3 px-2 text-[11px] font-medium uppercase tracking-wider text-zinc-400">
+      <div className="grid grid-cols-[1fr_4.5rem_4.5rem_4.5rem] gap-3 px-2 text-[11px] font-medium uppercase tracking-wider text-slate-400">
         <span>Metric</span><span className="text-right">A</span><span className="text-right">B</span><span className="text-right">Change</span>
       </div>
       {rows.map((row) => {
         const delta = parseFloat(row.change);
         const better = LOWER_IS_BETTER.has(row.name) ? delta < 0 : delta > 0;
-        const color = !row.change || !delta ? "text-zinc-400" : better ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400";
+        const color = !row.change || !delta ? "text-slate-400" : better ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400";
         return (
-          <div key={row.name} className="grid grid-cols-[1fr_4.5rem_4.5rem_4.5rem] items-center gap-3 rounded-lg px-2 py-1.5 text-sm odd:bg-zinc-50 dark:odd:bg-zinc-800/40">
+          <div key={row.name} className="grid grid-cols-[1fr_4.5rem_4.5rem_4.5rem] items-center gap-3 rounded-lg px-2 py-1.5 text-sm odd:bg-slate-50 dark:odd:bg-slate-800/40">
             <span className="min-w-0 truncate">{row.label}</span>
             <span className="text-right tabular-nums">{row.a}</span>
             <span className="text-right font-medium tabular-nums">{row.b}</span>
@@ -273,30 +273,30 @@ function StartDialog({ onClose, onStarted }: { onClose: () => void; onStarted: (
   return (
     <Modal onClose={onClose} label="Start an evaluation" wide>
       <h2 className="font-semibold">Start an evaluation</h2>
-      <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Asks the test questions and scores the results. It runs in the background.</p>
+      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Asks the test questions and scores the results. It runs in the background.</p>
       <form onSubmit={submit} className="mt-5 space-y-4">
         <fieldset>
           <legend className={label}>What to test</legend>
           <div className="grid gap-2 sm:grid-cols-2">
             {[["full", "Full", "Search and answers"], ["retrieval", "Retrieval only", "Search only, no answer model calls"]].map(([value, title, text], i) => (
-              <label key={value} className="flex cursor-pointer gap-3 rounded-xl border border-zinc-200 p-3 has-[:checked]:border-indigo-500
-                                              has-[:checked]:bg-indigo-50/50 dark:border-zinc-700 dark:has-[:checked]:bg-indigo-500/10">
-                <input type="radio" name="mode" value={value} defaultChecked={i === 0} className="mt-0.5 accent-indigo-600" />
-                <span><span className="block text-sm font-medium">{title}</span><span className="block text-xs text-zinc-500 dark:text-zinc-400">{text}</span></span>
+              <label key={value} className="flex cursor-pointer gap-3 rounded-xl border border-slate-200 p-3 has-[:checked]:border-blue-500
+                                              has-[:checked]:bg-blue-50/50 dark:border-slate-700 dark:has-[:checked]:bg-blue-500/10">
+                <input type="radio" name="mode" value={value} defaultChecked={i === 0} className="mt-0.5 accent-blue-600" />
+                <span><span className="block text-sm font-medium">{title}</span><span className="block text-xs text-slate-500 dark:text-slate-400">{text}</span></span>
               </label>
             ))}
           </div>
         </fieldset>
         <fieldset>
-          <legend className={label}>AI judges <span className="font-normal text-zinc-400">(slower, use the judge model's daily quota)</span></legend>
+          <legend className={label}>AI judges <span className="font-normal text-slate-400">(slower, use the judge model's daily quota)</span></legend>
           <div className="flex flex-wrap gap-4">
-            <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="ragas" className="size-4 rounded accent-indigo-600" />RAGAS</label>
-            <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="deepeval" className="size-4 rounded accent-indigo-600" />DeepEval</label>
+            <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="ragas" className="size-4 rounded accent-blue-600" />RAGAS</label>
+            <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="deepeval" className="size-4 rounded accent-blue-600" />DeepEval</label>
           </div>
         </fieldset>
         <div className="grid gap-3 sm:grid-cols-2">
           <div>
-            <label className={label} htmlFor="eval-tag">Name <span className="font-normal text-zinc-400">(optional)</span></label>
+            <label className={label} htmlFor="eval-tag">Name <span className="font-normal text-slate-400">(optional)</span></label>
             <input id="eval-tag" name="tag" pattern="[A-Za-z0-9_\-]{1,40}" title="Letters, numbers, - and _ (up to 40)" placeholder="full" className={cx(field, "font-mono")} />
           </div>
           <div>
@@ -325,7 +325,7 @@ function RunDrawer({ tag, onClose }: { tag: string; onClose: () => void }) {
   return (
     <Drawer onClose={onClose} label={`Evaluation ${tag}`} header={(
       <>
-        <p className="font-mono text-xs text-zinc-500 dark:text-zinc-400">{run ? `${run.mode === "retrieval" ? "Retrieval only" : "Full"} · ${run.dataset}` : "Evaluation run"}</p>
+        <p className="font-mono text-xs text-slate-500 dark:text-slate-400">{run ? `${run.mode === "retrieval" ? "Retrieval only" : "Full"} · ${run.dataset}` : "Evaluation run"}</p>
         <h2 className="mt-1 font-semibold">{tag}</h2>
       </>
     )}>
@@ -335,19 +335,19 @@ function RunDrawer({ tag, onClose }: { tag: string; onClose: () => void }) {
         <>
           <dl className="grid grid-cols-2 gap-2 sm:grid-cols-3">
             {Object.entries(run.summary).filter(([, metric]) => metric && metric.n).map(([name, metric]) => (
-              <div key={name} className="rounded-xl bg-zinc-50 p-3 dark:bg-zinc-900">
-                <dt className="truncate text-[11px] text-zinc-500 dark:text-zinc-400" title={LABELS[name] ?? name}>{LABELS[name] ?? name.replace(/_/g, " ")}</dt>
+              <div key={name} className="rounded-xl bg-slate-50 p-3 dark:bg-slate-900">
+                <dt className="truncate text-[11px] text-slate-500 dark:text-slate-400" title={LABELS[name] ?? name}>{LABELS[name] ?? name.replace(/_/g, " ")}</dt>
                 <dd className="mt-0.5 text-sm font-semibold tabular-nums">{showMetric(name, metric)}</dd>
               </div>
             ))}
           </dl>
           {(["ragas", "deepeval"] as const).map((key) => run[key] && (
             <div key={key}>
-              <p className="mb-2 text-sm font-semibold">{key === "ragas" ? "RAGAS" : "DeepEval"} <span className="font-normal text-zinc-500 dark:text-zinc-400">· {run[key]!.judge}</span></p>
+              <p className="mb-2 text-sm font-semibold">{key === "ragas" ? "RAGAS" : "DeepEval"} <span className="font-normal text-slate-500 dark:text-slate-400">· {run[key]!.judge}</span></p>
               <dl className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                 {Object.entries(run[key]!.summary).filter(([, metric]) => metric).map(([name, metric]) => (
-                  <div key={name} className="rounded-xl bg-violet-50/60 p-3 dark:bg-violet-500/10">
-                    <dt className="truncate text-[11px] text-zinc-500 dark:text-zinc-400">{name.replace(/_/g, " ")}</dt>
+                  <div key={name} className="rounded-xl bg-sky-50/60 p-3 dark:bg-sky-500/10">
+                    <dt className="truncate text-[11px] text-slate-500 dark:text-slate-400">{name.replace(/_/g, " ")}</dt>
                     <dd className="mt-0.5 text-sm font-semibold tabular-nums">{metric!.value.toFixed(3)}</dd>
                   </div>
                 ))}
@@ -355,8 +355,8 @@ function RunDrawer({ tag, onClose }: { tag: string; onClose: () => void }) {
             </div>
           ))}
           <div>
-            <p className="mb-2 text-sm font-semibold">Questions <span className="font-normal text-zinc-500 dark:text-zinc-400">· {run.results.length}</span></p>
-            <ul className="divide-y divide-zinc-100 overflow-hidden rounded-2xl border border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800">
+            <p className="mb-2 text-sm font-semibold">Questions <span className="font-normal text-slate-500 dark:text-slate-400">· {run.results.length}</span></p>
+            <ul className="divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-200 dark:divide-slate-800 dark:border-slate-800">
               {run.results.map((result) => (
                 <li key={result.id} className="flex items-start gap-3 px-3 py-2.5 text-sm">
                   <span className={cx(badge, "mt-0.5 shrink-0", result.passed == null ? tone.gray : result.passed ? tone.green : tone.red)}>
@@ -364,7 +364,7 @@ function RunDrawer({ tag, onClose }: { tag: string; onClose: () => void }) {
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block">{result.question}</span>
-                    <span className="block text-xs text-zinc-500 dark:text-zinc-400"><span className="font-mono">{result.id}</span> · {result.type}
+                    <span className="block text-xs text-slate-500 dark:text-slate-400"><span className="font-mono">{result.id}</span> · {result.type}
                       {result.seconds != null && ` · ${formatSeconds(result.seconds)}`}</span>
                   </span>
                 </li>
