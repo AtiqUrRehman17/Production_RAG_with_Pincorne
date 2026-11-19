@@ -55,6 +55,27 @@ body {
 }
 @keyframes stripes { to { background-position: 14px 0; } }
 
+/* Glowing pill animation for RAG tag */
+.glow-badge {
+  background-size: 200% auto;
+  animation: glow-shift 4s ease infinite;
+}
+@keyframes glow-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Pulsing radar dot */
+.pulse-radar {
+  animation: radar-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes radar-ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
 }

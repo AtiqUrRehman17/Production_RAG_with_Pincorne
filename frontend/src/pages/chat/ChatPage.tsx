@@ -195,8 +195,14 @@ export function ChatPage() {
           {content}
         </div>
 
-        <Composer key={conversationId ?? "new"} streaming={!!pending} disabled={creating || !!stream.pending}
-                  onSend={send} onStop={stream.stop} />
+        <Composer
+          key={conversationId ?? "new"}
+          streaming={!!pending}
+          disabled={creating || !!stream.pending}
+          scopeLabel={documents.length > 0 ? (scope ? `${scope.length} of ${documents.length} docs` : `All documents (${documents.length})`) : undefined}
+          onSend={send}
+          onStop={stream.stop}
+        />
       </section>
 
       {dialog === "rename" && chat && (

@@ -2,18 +2,24 @@ import { useEffect, useRef, useState } from "react";
 
 import type { DocumentInfo } from "../../api/types";
 import { Icon } from "../../components/Icon";
-import { button, cx } from "../../components/ui";
+import { button, cx, fieldBase } from "../../components/ui";
 import { fileType } from "../../lib/format";
 import { toast } from "../../lib/toast";
 
 /** Which documents a chat searches: null = all of them. */
-export function ScopePicker({ documents, selected, onChange }: {
+export function ScopePicker({
+  documents,
+  selected,
+  onChange,
+}: {
   documents: DocumentInfo[];
   selected: string[] | null;
   onChange: (documentIds: string[] | null) => void;
 }) {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const box = useRef<HTMLDivElement>(null);
+
   const existing = selected?.filter((id) => documents.some((d) => d.document_id === id)) ?? null;
 
   useEffect(() => {
@@ -36,40 +42,105 @@ export function ScopePicker({ documents, selected, onChange }: {
     const current = existing ?? documents.map((d) => d.document_id);
     const next = current.includes(id) ? current.filter((x) => x !== id) : [...current, id];
     if (!next.length) {
-      toast("Pick at least one document.", "error");
+      toast("Pick at least one document to search.", "error");
       return;
     }
     onChange(next.length === documents.length ? null : next);
   }
 
-  const label = existing ? `${existing.length} of ${documents.length} documents` : "All documents";
+  const filteredDocs = documents.filter((d) =>
+    !search.trim() || d.file_name.toLowerCase().includes(search.trim().toLowerCase())
+  );
+
+  const label = existing
+    ? `${existing.length} of ${documents.length} docs`
+    : `All documents (${documents.length})`;
+
   return (
     <div ref={box} className="relative">
-      <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} title="Which documents this chat searches"
-              className={cx(button("secondary", "sm"), "gap-1.5")} disabled={!documents.length}>
-        <Icon name="layers" className="size-4" />
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        title="Filter which documents this chat searches"
+        className={cx(
+          button("secondary", "sm"),
+          "gap-1.5 shadow-2xs font-medium text-xs",
+          existing && "border-indigo-300 bg-indigo-50/50 text-indigo-700 dark:border-indigo-500/40 dark:bg-indigo-500/10 dark:text-indigo-300"
+        )}
+        disabled={!documents.length}
+      >
+        <Icon name="layers" className="size-3.5 text-indigo-500" />
         <span className="hidden sm:inline">{label}</span>
         <span className="sm:hidden">{existing ? existing.length : "All"}</span>
-        <Icon name="down" className="size-3.5" />
+        <Icon name="down" className={cx("size-3 transition-transform duration-200", open && "rotate-180")} />
       </button>
+
       {open && (
-        <div className="fade-in absolute right-0 top-full z-30 mt-2 w-80 max-w-[calc(100vw-1.5rem)] rounded-xl border border-zinc-200 bg-white p-2
-                        shadow-xl dark:border-zinc-700 dark:bg-zinc-900">
-          <p className="px-2 pb-2 pt-1 text-xs text-zinc-500 dark:text-zinc-400">This chat only searches the documents you pick.</p>
-          <label className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-800">
-            <input type="checkbox" checked={!existing} onChange={() => onChange(null)} className="size-4 rounded accent-indigo-600" />
-            <span className="text-sm font-medium">All documents</span>
-          </label>
-          <div className="my-1 border-t border-zinc-100 dark:border-zinc-800" />
-          <div className="scroll-thin max-h-72 overflow-y-auto">
-            {documents.map((d) => (
-              <label key={d.document_id} className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-800">
-                <input type="checkbox" checked={!existing || existing.includes(d.document_id)} onChange={() => toggle(d.document_id)}
-                       className="size-4 rounded accent-indigo-600" />
-                <span className="min-w-0 flex-1 truncate text-sm" title={d.file_name}>{d.file_name}</span>
-                <span className="text-[10px] font-semibold uppercase text-zinc-400">{fileType(d.file_name)}</span>
-              </label>
-            ))}
+        <div className="fade-in absolute right-0 top-full z-40 mt-2 w-84 max-w-[calc(100vw-1.5rem)] rounded-xl border border-zinc-200/90 bg-white p-2.5 shadow-xl backdrop-blur-md dark:border-zinc-700 dark:bg-zinc-900">
+          <div className="px-1 pb-2">
+            <p className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+              Retrieval Scope Filter
+            </p>
+            <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+              Restrict Pinecone vector queries to specific documents.
+            </p>
+          </div>
+
+          {documents.length > 5 && (
+            <div className="mb-2 px-1">
+              <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Filter files…"
+                className={cx(fieldBase, "py-1 px-2.5 text-xs")}
+              />
+            </div>
+          )}
+
+          <div className="flex items-center justify-between rounded-lg bg-zinc-50 px-2.5 py-1.5 dark:bg-zinc-800/60">
+            <label className="flex cursor-pointer items-center gap-2">
+              <input
+                type="checkbox"
+                checked={!existing}
+                onChange={() => onChange(null)}
+                className="size-3.5 rounded accent-indigo-600"
+              />
+              <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
+                All Documents
+              </span>
+            </label>
+            <span className="text-[10px] text-zinc-400 font-mono">
+              {documents.length} available
+            </span>
+          </div>
+
+          <div className="my-1.5 border-t border-zinc-100 dark:border-zinc-800" />
+
+          <div className="scroll-thin max-h-60 space-y-0.5 overflow-y-auto px-0.5">
+            {filteredDocs.map((d) => {
+              const isChecked = !existing || existing.includes(d.document_id);
+              const ext = fileType(d.file_name);
+              return (
+                <label
+                  key={d.document_id}
+                  className="flex cursor-pointer items-center gap-2.5 rounded-lg px-2 py-1.5 transition hover:bg-zinc-100/70 dark:hover:bg-zinc-800/60"
+                >
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() => toggle(d.document_id)}
+                    className="size-3.5 rounded accent-indigo-600"
+                  />
+                  <span className="min-w-0 flex-1 truncate text-xs text-zinc-700 dark:text-zinc-300" title={d.file_name}>
+                    {d.file_name}
+                  </span>
+                  <span className="rounded-xs bg-zinc-100 px-1.5 py-0.5 text-[9px] font-bold uppercase text-zinc-400 dark:bg-zinc-800 dark:text-zinc-500">
+                    {ext}
+                  </span>
+                </label>
+              );
+            })}
           </div>
         </div>
       )}
